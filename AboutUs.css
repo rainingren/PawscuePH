@@ -1,0 +1,258 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300..800&family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+:root {
+  --white-color: #FFFFFF;
+  --dark-color: #142850;
+  --light-color: #a8d8f0;
+  --medium-color: #789ecd;
+  --gray-color: #FCFCF7;
+  --orange-color: #ff8a47;
+  --lightorange-color: #ff985b;
+
+  --font-size-s: 0.9rem;
+  --font-size-n: 1rem;
+  --font-size-m: 1.12rem;
+  --font-size-l: 1.5rem;
+  --font-size-xl: 2rem;
+  --font-size-xxl: 2.3rem;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-black: 800;
+
+  --border-radius-s: 8px;
+  --border-radius-m: 30px;
+  --border-radius-circle: 50%;
+
+  --site-max-width: 1300px;
+}
+
+body {
+  background-color: #FCFCF7;
+}
+
+header {
+  background: var(--dark-color);
+  padding: 10px 0;
+}
+
+.navbar {
+  width: 1280px;
+  height: 121px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+}
+
+.nav-link {
+  color: var(--white-color);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 8px 16px;
+  border-radius: 6px;
+}
+
+.nav-link:hover {
+  background-color: var(--lightorange-color);
+  transition: 0.3s ease;
+}
+
+.nav-link.active {
+  background-color: var(--orange-color);
+  color: #fff;
+  font-weight: bold;
+}
+
+.nav-logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.logo-img {
+  width: 60px;
+  height: auto;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+}
+
+.search-input-wrapper {
+  display: flex;
+  align-items: center;
+  background: #ddd;
+  border-radius: 8px;
+  padding: 0 8px;
+}
+
+.search-input-wrapper input {
+  padding: 8px;
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 140px;
+}
+
+.search-input-wrapper button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: var(--dark-color);
+}
+
+.heading {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  margin: 20px auto;
+}
+
+.heading h1 {
+  font-size: 55px;
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.heading h1::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  display: block;
+  margin: 0 auto;
+  background-color: #142850;
+}
+
+.heading p {
+  font-size: 20px;
+  color: #142850;
+  margin-bottom: 35px;
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+  padding: 10px 20px;
+}
+
+.about {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-bottom: 70px;
+}
+
+.about-image {
+  flex: 1 1 300px;
+  text-align: center;
+}
+
+.about-image img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  transition: 0.5s ease;
+  border-radius: 12px;
+}
+
+.about-image:hover img {
+  transform: scale(1.05);
+}
+
+.about-content {
+  flex: 2 1 500px;
+  text-align: justify;
+  padding-right: 100px;
+  margin-left: auto;
+}
+
+.about-content h2 {
+  font-size: 23px;
+  margin-bottom: 15px;
+}
+
+.about-content p {
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+@media screen and (max-width: 768px) {
+  .about {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-content,
+  .about-image {
+    text-align: center;
+  }
+
+  .about-content {
+    text-align: justify;
+  }
+}
+
+/* ✅ FIXED Marquee */
+.marquee {
+  width: 100vw;
+  background-color: var(--orange-color);
+  padding: 15px 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-transform: uppercase;
+  margin: 0;
+  z-index: 1;
+  position: relative;
+  left: 0;
+}
+
+.marquee div {
+  display: inline-block;
+  padding-left: 100%;
+  font-size: 50px;
+  font-weight: 800;
+  animation: animate 20s linear infinite;
+  color: var(--white-color);
+}
+
+@keyframes animate {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
