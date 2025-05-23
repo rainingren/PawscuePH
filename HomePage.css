@@ -113,3 +113,111 @@ header {
     font-size: var(--font-size-n);
   }
 
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 100px);
+    background-color: var(--light-color);
+    padding: 20px 50px;
+}
+
+.intro-page {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: var(--site-max-width);
+}
+
+.intro-content {
+    flex: 1;
+    padding-right: 50px; /* Space between text and image */
+}
+
+.intro-content h1 {
+    font-size: var(--font-size-xxl);
+    font-weight: var(--font-weight-black);
+    color: var(--dark-color);
+    margin-bottom: 10px;
+}
+
+.intro-content h2 {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--dark-color);
+    margin-bottom: 20px;
+}
+
+.intro-content p {
+    font-size: var(--font-size-m);
+    color: var(--dark-color);
+    line-height: 1.6;
+    margin-bottom: 30px;
+    max-width: 500px; /* Limit paragraph width */
+}
+
+.learn-more-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--orange-color);
+    color: var(--white-color);
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: var(--border-radius-s);
+    font-weight: var(--font-weight-semibold);
+    transition: background-color 0.3s ease;
+}
+
+.learn-more-button:hover {
+    background-color: var(--lightorange-color);
+}
+
+.learn-more-button i {
+    font-size: var(--font-size-n);
+}
+
+.dog-image {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.dog-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--border-radius-s);
+}
+
+.donate-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--orange-color); 
+    color: var(--white-color);
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: var(--border-radius-s);
+    font-weight: var(--font-weight-semibold);
+    transition: background-color 0.3s ease;
+    margin-top: 15px; 
+}
+
+.donate-button:hover {
+    background-color: var(--lightorange-color);
+}
+
+.donate-button i {
+    font-size: var(--font-size-n);
+}
+
+.intro-content .learn-more-button,
+.intro-content .donate-button {
+    display: block; 
+    width: fit-content; 
+}
+
+.hero-content a {
+    margin-right: 0; 
+}
