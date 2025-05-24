@@ -328,7 +328,7 @@ header {
 }
 
 .footer-upper {
-    padding: 40px 50px 10px;
+    padding: 20px 50px 5px;
     display: flex;
     justify-content: center; 
     max-width: var(--site-max-width);
@@ -366,7 +366,7 @@ header {
     align-items: flex-end; 
     max-width: var(--site-max-width);
     margin: 0 auto;
-    padding: 10px 50px 50px; 
+    padding: 5px 50px 25px; 
 }
 
 .footer-left {
@@ -421,27 +421,29 @@ header {
 
 .social-icons {
     display: flex;
-    gap: 10px; /* Space between icons */
+    gap: 10px; 
 }
 
 .social-icons a {
-    text-decoration: none; /* Remove underline from links */
+    display: inline-block; 
+    width: 35px;
+    height: 35px; 
+    overflow: hidden;
+    text-decoration: none; 
 }
 
-.social-icons i {
-    font-size: var(--font-size-l); /* Icon size */
-    color: var(--dark-color); /* Icon color inside circle */
-    background-color: var(--white-color); /* Circle background */
-    width: 35px; /* Circle width */
-    height: 35px; /* Circle height */
-    border-radius: var(--border-radius-circle);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: background-color 0.3s ease, color 0.3s ease;
+.social-icons a:hover {
+    background-color: var(--white-color); /* Change background on hover */
 }
 
-.social-icons i:hover {
-    background-color: var(--orange-color);
-    color: var(--white-color);
+.social-icons img {
+    display: block; 
+    width: 100%; 
+    height: 100%; 
+    object-fit: contain; 
+    transition: opacity 0.3s ease; 
+}
+
+.social-icons a:hover img {
+    opacity: 0.7; 
 }
