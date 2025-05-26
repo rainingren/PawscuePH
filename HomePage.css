@@ -25,12 +25,12 @@ html, body {
     --lightorange-color: #ff985b;
 
     /* Font size */
-    --font-size-s: 0.9 rem;
-    --font-size-n: 1 rem;
-    --font-size-m: 1.12 rem;
-    --font-size-l: 1.5 rem;
-    --font-size-xl: 2 rem;
-    --font-size-xxl: 2.3 rem;
+    --font-size-s: 0.9rem;
+    --font-size-n: 1rem;
+    --font-size-m: 1.12rem;
+    --font-size-l: 1.5rem;
+    --font-size-xl: 2rem;
+    --font-size-xxl: 2.3rem;
 
     /* Font weight */
     --font-weight-normal: 400;
@@ -51,7 +51,7 @@ html, body {
 header {
     background: var(--dark-color);
     padding: 5px 0;
-    position: sticky;
+    position: fixed;
     top: 0;   
     width: 100%;
     z-index: 5;
@@ -128,17 +128,19 @@ header {
     width: 100%;
     background-color: var(--light-color);
     overflow: hidden;
+    height: 100vh;
 }
 
 .intro-page .intro-content{
   display: flex;
   align-items: center;
-  height: 100%;
+  height: calc(100vh - 100px);
   min-height: unset;
   color: var(--dark-color);
   justify-content: space-between;
   padding-right: 100px; 
   padding-left: 100px;
+  margin-top: 100px;
 }
 
 .intro-page .intro-detail .title {
@@ -189,16 +191,15 @@ header {
     justify-content: flex-end;
     overflow: hidden;
     align-items: flex-end;
-    height: 80%;
+    height: 100%;
     object-fit: cover;
-    display: block;
 
 }
 
 .dog-image img {
-    max-width: 100%;
+    width: 110%;
+    height: 80%;
     border-radius: var(--border-radius-s);
-    display: block;
 }
 
 .donate-button {
@@ -227,6 +228,22 @@ header {
 .intro-content .donate-button {
     display: block; 
     width: fit-content; 
+}
+
+.goals-section{
+    background-color: var(--white-color);
+    padding: 60px 50px;
+    text-align: center;
+    max-width: var(--site-max-width); 
+    margin: 0 auto;
+}
+
+.goals-title{
+    font-size: 5rem;
+    font-weight: var(--font-weight-black);
+    color: var(--orange-color);
+    font-family: "Poppins";
+    margin-bottom: 40px;
 }
 
 .footer {
