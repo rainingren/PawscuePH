@@ -41,7 +41,7 @@ html, body {
 
     /* Border radius */
     --border-radius-s: 8px;
-    --border-radius-m: 30px;
+    --border-radius-m: 40px;
     --border-radius-circle: 50%;
 
     /* Site max width */
@@ -230,21 +230,271 @@ header {
     width: fit-content; 
 }
 
-.goals-section{
+.goals-section {
     background-color: var(--white-color);
-    padding: 60px 50px;
+    padding: 60px 20px;
     text-align: center;
-    max-width: var(--site-max-width); 
+    max-width: var(--site-max-width);
     margin: 0 auto;
+    position: relative;
 }
 
-.goals-title{
+.section-title {
     font-size: 5rem;
     font-weight: var(--font-weight-black);
     color: var(--orange-color);
-    font-family: "Poppins";
     margin-bottom: 40px;
+    text-transform: uppercase;
 }
+
+.carousel-wrapper input[type="radio"] {
+    display: none;
+}
+
+.carousel-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: var(--border-radius-s);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-container {
+    display: flex;
+    width: 300%; 
+    transition: transform 0.8s ease-in-out;
+}
+
+.carousel-slide {
+    flex: 0 0 calc(100% / 3); /* Each slide takes 1/3rd of the 300% width, effectively 100% of carousel-wrapper width */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--dark-color);
+    border-radius: var(--border-radius-s);
+    padding: 0; /* Removed padding */
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: auto;
+    max-height: 450px;
+    border-radius: var(--border-radius-s);
+    object-fit: cover;
+    display: block;
+}
+
+#slide-1:checked ~ .carousel-container {
+    transform: translateX(0%);
+}
+#slide-2:checked ~ .carousel-container {
+    transform: translateX(-100%);
+}
+#slide-3:checked ~ .carousel-container {
+    transform: translateX(-200%);
+}
+
+
+.carousel-arrows {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between; 
+    transform: translateY(-50%);
+    pointer-events: none; 
+    z-index: 10;
+    padding: 0 20px; 
+}
+
+.carousel-arrow {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: var(--white-color);
+    border: none;
+    padding: 12px 18px;
+    font-size: 1.5rem;
+    border-radius: var(--border-radius-circle);
+    cursor: pointer;
+    pointer-events: auto; 
+    display: none; 
+}
+
+.carousel-arrow:hover {
+    background-color: rgba(0, 0, 0, 0.7); 
+}
+
+#slide-1:checked ~ .carousel-arrows .carousel-arrow.right[for="slide-2"] {
+    display: block;
+}
+
+#slide-2:checked ~ .carousel-arrows .carousel-arrow.left[for="slide-1"] {
+    display: block;
+}
+#slide-2:checked ~ .carousel-arrows .carousel-arrow.right[for="slide-3"] {
+    display: block;
+}
+
+#slide-3:checked ~ .carousel-arrows .carousel-arrow.left[for="slide-2"] {
+    display: block;
+}
+
+.carousel-arrow.left {
+    margin-right: auto; 
+}
+
+.carousel-arrow.right {
+    margin-left: auto; 
+}
+
+.carousel-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.carousel-pagination .dot {
+    width: 14px;
+    height: 14px;
+    background-color: var(--gray-color);
+    border-radius: var(--border-radius-circle);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#slide-1:checked ~ .carousel-pagination label[for="slide-1"],
+#slide-2:checked ~ .carousel-pagination label[for="slide-2"],
+#slide-3:checked ~ .carousel-pagination label[for="slide-3"] {
+    background-color: var(--orange-color);
+}
+
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2.5rem;
+    }
+
+    .carousel-slide img {
+        max-height: 300px;
+    }
+
+    .carousel-arrow {
+        padding: 8px 12px;
+        font-size: 1.2rem;
+    }
+}
+
+.support-paw-section {
+    background-color: var(--orange-color); 
+    padding: 80px 20px; 
+    text-align: center;
+    position: relative; 
+    overflow: hidden;
+}
+
+.support-paw-container {
+    max-width: 1000px; 
+    margin: 0 auto;
+    color: var(--white-color);
+}
+
+.support-paw-title {
+    background-color: var(--white-color);
+    background-size: 80px;
+    color: var(--dark-color);
+    font-size: 3rem; 
+    font-weight: var(--font-weight-black);
+    padding: 15px 30px;
+    border-radius: var(--border-radius-m); 
+    margin-bottom: 30px;
+}
+
+.support-paw-description {
+    font-size: var(--font-size-m);
+    font-weight: var(--font-weight-normal);
+    color: var(--dark-color);
+    line-height: 1.6;
+    max-width: 800px; 
+    margin: 0 auto 50px auto;
+}
+
+.qr-codes {
+    display: flex;
+    justify-content: center;
+    gap: 40px; 
+    flex-wrap: wrap; 
+}
+
+.qr-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.qr-box {
+    background-color: var(--white-color);
+    padding: 15px;
+    border-radius: var(--border-radius-s); 
+    border: 10px solid var(--blue-border-color); 
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px; 
+    height: 200px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+}
+
+.qr-box img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    border-radius: var(--border-radius-s); 
+}
+
+.qr-details {
+    font-size: var(--font-size-n);
+    font-weight: var(--font-weight-medium);
+    color: var(--dark-color);
+    line-height: 1.4;
+}
+
+.qr-details strong {
+    font-weight: var(--font-weight-bold);
+}
+
+@media (max-width: 768px) {
+    .support-paw-title {
+        font-size: var(--font-size-xl);
+        padding: 10px 20px;
+    }
+
+    .support-paw-description {
+        font-size: var(--font-size-n);
+        margin-bottom: 30px;
+    }
+
+    .qr-codes {
+        flex-direction: column; 
+        gap: 30px;
+    }
+
+    .qr-box {
+        width: 180px;
+        height: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    .support-paw-title {
+        font-size: var(--font-size-l);
+    }
+    .support-paw-section {
+        padding: 60px 15px;
+    }
+}
+
 
 .footer {
     background-color: var(--dark-color);

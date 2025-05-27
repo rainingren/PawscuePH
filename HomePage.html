@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PawscuePH</title>
     <link rel="stylesheet" href="HomePage.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
 </head>
 <body>
     <header>
@@ -36,8 +37,8 @@
               <p class="description">This website acts as a vital bridge between these loyal canines and compassionate families ready to provide the care and comfort they truly deserve.</p>
 
               <div class="buttons">
-                <a href="AboutUs.html" class="learn-more-button">LEARN MORE<i class="fa fa-arrow-right" aria-hidden="true"></i></a>
-              <a href="#" class="donate-button">DONATE NOW<i class="fa fa-arrow-right" aria-hidden="true"></i></a> </div>
+                <a href="AboutUs.html" class="learn-more-button">LEARN MORE<i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+              <a href="#" class="donate-button">DONATE NOW<i class="bi bi-arrow-right" aria-hidden="true"></i></a> </div>
             </div>
             <div class="dog-image">
               <img src="Images/home page.png" alt="German Shepherd dog" class="hero-image">
@@ -46,15 +47,73 @@
         </section>
 
         <section class="goals-section">
-          <h1 class="goals-title">GOALS</h1>
-          <div class="goals container">
-            <li class="card-list">
-              <img src="Images/first-goal.png" alt="1st goal" class="first-goal">
-              <img src="Images/second-goal.png" alt="1st goal" class="second-goal">
-              <img src="Images/third-goal.png" alt="1st goal" class="third-goal">
-            </li>
+          <h2 class="section-title">GOALS:</h2>
+          <div class="carousel-wrapper">
+            <!-- Slide Selectors -->
+            <input type="radio" name="slider" id="slide-1" checked>
+            <input type="radio" name="slider" id="slide-2">
+            <input type="radio" name="slider" id="slide-3">
+
+            <!-- Slides -->
+            <div class="carousel-container">
+              <div class="carousel-slide">
+                <img src="Images/first-goal.png" alt="Dog in kennel, representing rescue">
+              </div>
+              <div class="carousel-slide">
+                <img src="Images/second-goal.png" alt="Person playing with a Rottweiler dog">
+              </div>
+              <div class="carousel-slide">
+                <img src="Images/third-goal.png" alt="People interacting with a dog, representing pet rescuers">
+              </div>
+            </div>
+
+            <!-- Navigation Arrows -->
+            <div class="carousel-arrows">
+              <label for="slide-3" class="carousel-arrow left left-1"><i class="bi bi-arrow-left"></i></label>
+              <label for="slide-1" class="carousel-arrow left left-2"><i class="bi bi-arrow-left"></i></label>
+              <label for="slide-2" class="carousel-arrow left left-3"><i class="bi bi-arrow-left"></i></label>
+
+              <label for="slide-2" class="carousel-arrow right right-1"><i class="bi bi-arrow-right"></i></label>
+              <label for="slide-3" class="carousel-arrow right right-2"><i class="bi bi-arrow-right"></i></label>
+              <label for="slide-1" class="carousel-arrow right right-3"><i class="bi bi-arrow-right"></i></label>
+            </div>
+          </div>
+
+          <!-- Pagination -->
+          <div class="carousel-pagination">
+            <label for="slide-1" class="dot"></label>
+            <label for="slide-2" class="dot"></label>
+            <label for="slide-3" class="dot"></label>
           </div>
         </section>
+
+        <section class="support-paw-section">
+          <div class="support-paw-container">
+            <h2 class="support-paw-title">SUPPORT A PAW</h2>
+            <p class="support-paw-description">Every pet deserves a loving home — and with your help, we can make that happen. Your monetary donation goes directly toward food, medical care, and safe shelter for our animals in need</p>
+            <div class="qr-codes">
+              <div class="qr-item">
+                <div class="qr-box">
+                  <img src="Images/gcash_qr.png" alt="GCash QR Code">
+                </div>
+                <p class="qr-details"><strong>GCASH:</strong> 09XX-XXX-XXXX<br>PAWSCUE PH</p>
+              </div>
+              <div class="qr-item">
+                <div class="qr-box">
+                  <img src="Images/bpi_qr.png" alt="BPI QR Code">
+                </div>
+                <p class="qr-details"><strong>BPI:</strong> XXXX-XXXX-XX<br>PAWSCUE PH</p>
+              </div>
+              <div class="qr-item">
+                <div class="qr-box">
+                  <img src="Images/paypal_qr.png" alt="PayPal QR Code">
+                </div>
+                <p class="qr-details"><strong>PAYPAL:</strong> Pawscue PH</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
     </main>
     <footer class="footer">
       <div class="footer-line top-line"></div>
