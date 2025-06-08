@@ -54,6 +54,15 @@ document.addEventListener('DOMContentLoaded', function() {
         toggleSection(petInformationSection, !this.checked);
     });
 
+        document.querySelectorAll('.heart').forEach(heart => {
+        heart.addEventListener('click', () => {
+        heart.classList.toggle('active');
+        const icon = heart.querySelector('i');
+        icon.classList.toggle('fa-regular');
+        icon.classList.toggle('fa-solid');
+      });
+      });
+
     // Initial state setup (sections are hidden by default in HTML and CSS)
     // You might want to pre-check "No" if that's the desired default, or ensure fields are initially non-required if hidden.
     // For this example, they start hidden and required status is handled by toggleSection.
