@@ -284,15 +284,29 @@ header {
     display: block;
 }
 
-#slide-1:checked ~ .carousel-container {
-    transform: translateX(0%);
+#slide-1:checked ~ .carousel-inner .carousel-container {
+  transform: translateX(0%);
 }
-#slide-2:checked ~ .carousel-container {
-    transform: translateX(-100%);
+#slide-2:checked ~ .carousel-inner .carousel-container {
+  transform: translateX(-100%);
 }
-#slide-3:checked ~ .carousel-container {
-    transform: translateX(-200%);
+#slide-3:checked ~ .carousel-inner .carousel-container {
+  transform: translateX(-200%);
 }
+
+#slide-1:checked ~ .carousel-inner .carousel-arrows .carousel-arrow.right[for="slide-2"],
+#slide-2:checked ~ .carousel-inner .carousel-arrows .carousel-arrow.left[for="slide-1"],
+#slide-2:checked ~ .carousel-inner .carousel-arrows .carousel-arrow.right[for="slide-3"],
+#slide-3:checked ~ .carousel-inner .carousel-arrows .carousel-arrow.left[for="slide-2"] {
+  display: block;
+}
+
+#slide-1:checked ~ .carousel-inner .carousel-pagination label[for="slide-1"],
+#slide-2:checked ~ .carousel-inner .carousel-pagination label[for="slide-2"],
+#slide-3:checked ~ .carousel-inner .carousel-pagination label[for="slide-3"] {
+  background-color: var(--orange-color);
+}
+
 
 
 .carousel-arrows {
@@ -316,24 +330,19 @@ header {
     border-radius: var(--border-radius-circle);
     cursor: pointer;
     pointer-events: auto; 
-    display: none; 
+    display: none; /* Hide by default */
 }
 
-.carousel-arrow:hover {
-    background-color: rgba(0, 0, 0, 0.7); 
-}
-
+/* Show right arrow on slide 1 */
 #slide-1:checked ~ .carousel-arrows .carousel-arrow.right[for="slide-2"] {
     display: block;
 }
-
-#slide-2:checked ~ .carousel-arrows .carousel-arrow.left[for="slide-1"] {
-    display: block;
-}
+/* Show left and right arrows on slide 2 */
+#slide-2:checked ~ .carousel-arrows .carousel-arrow.left[for="slide-1"],
 #slide-2:checked ~ .carousel-arrows .carousel-arrow.right[for="slide-3"] {
     display: block;
 }
-
+/* Show left arrow on slide 3 */
 #slide-3:checked ~ .carousel-arrows .carousel-arrow.left[for="slide-2"] {
     display: block;
 }

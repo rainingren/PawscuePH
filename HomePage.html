@@ -69,15 +69,14 @@
 
             <!-- Navigation Arrows -->
             <div class="carousel-arrows">
-              <label for="slide-3" class="carousel-arrow left left-1"><i class="bi bi-arrow-left"></i></label>
-              <label for="slide-1" class="carousel-arrow left left-2"><i class="bi bi-arrow-left"></i></label>
-              <label for="slide-2" class="carousel-arrow left left-3"><i class="bi bi-arrow-left"></i></label>
-
-              <label for="slide-2" class="carousel-arrow right right-1"><i class="bi bi-arrow-right"></i></label>
-              <label for="slide-3" class="carousel-arrow right right-2"><i class="bi bi-arrow-right"></i></label>
-              <label for="slide-1" class="carousel-arrow right right-3"><i class="bi bi-arrow-right"></i></label>
+              <!-- On slide 1, show right arrow to slide 2 -->
+              <label for="slide-2" class="carousel-arrow right"><i class="bi bi-arrow-right"></i></label>
+              <!-- On slide 2, show left to slide 1 and right to slide 3 -->
+              <label for="slide-1" class="carousel-arrow left"><i class="bi bi-arrow-left"></i></label>
+              <label for="slide-3" class="carousel-arrow right"><i class="bi bi-arrow-right"></i></label>
+              <!-- On slide 3, show left arrow to slide 2 -->
+              <label for="slide-2" class="carousel-arrow left"><i class="bi bi-arrow-left"></i></label>
             </div>
-          </div>
 
           <!-- Pagination -->
           <div class="carousel-pagination">
@@ -110,7 +109,7 @@
                 </div>
                 <p class="qr-details"><strong>PAYPAL:</strong> Pawscue PH</p>
               </div>
-            </div>  
+            </div>
           </div>
         </section>
 
