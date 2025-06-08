@@ -166,13 +166,12 @@ header {
 }
 
 .learn-more-button {
-    display: inline-flex;
     align-items: center;
     gap: 10px;
     background-color: var(--orange-color);
     color: var(--white-color);
     text-decoration: none;
-    padding: 12px 25px;
+    padding: 12px 30px;
     border-radius: var(--border-radius-s);
     font-weight: var(--font-weight-semibold);
     transition: background-color 0.3s ease;
@@ -203,7 +202,6 @@ header {
 }
 
 .donate-button {
-    display: inline-flex;
     align-items: center;
     gap: 10px;
     background-color: var(--orange-color); 
