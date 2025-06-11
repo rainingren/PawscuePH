@@ -119,6 +119,99 @@ margin-left: auto;
     height: auto;
 }
 
+.hero-section {
+  background-color: var(--light-color);
+  text-align: center;
+  padding: 150px 20px 40px;
+}
+
+.hero-title {
+  font-size: 5rem;
+  font-weight: var(--font-weight-black);
+  color: var(--dark-color);
+  margin-bottom: 10px;
+  line-height: 1.2;
+  font-family: "Poppins"
+}
+
+.hero-subtitle {
+  font-size: var(--font-size-xxl);
+  font-weight: var(--font-weight-bold);
+  color: var(--dark-color);
+  margin-bottom: 20px;
+  line-height: 1.2;
+  font-family: "Poppins";
+}
+
+.hero-description {
+  font-size: var(--font-size-n);
+  max-width: 70%;
+  margin: 10px auto 25px;
+  color: #000;
+}
+
+.apply-btn {
+  background-color: var(--orange-color);
+  color: #fff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: var(--border-radius-s);
+  font-size: var(--font-size-m);
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.apply-btn:hover {
+  background-color: var(--lightorange-color);
+}
+
+.how-to-apply {
+  background-color: var(--dark-color);
+  color: var(--white-color);
+  padding: 50px 20px;
+  text-align: center;
+  width: 100vw;           
+  margin-left: calc(-50vw + 50%);
+}
+
+.how-to-apply h2 {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 30px;
+}
+
+.apply-steps {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.step {
+  background-color: var(--medium-color);
+  padding: 20px;
+  border-radius: var(--border-radius-s);
+  width: 250px;
+  max-width: 90%;
+  text-align: center;
+}
+
+.step .icon {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.step h3 {
+  font-size: var(--font-size-m);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: 10px;
+}
+
+.step p {
+  font-size: var(--font-size-s);
+}
+
+
 
 .container {
   background-color: var(--light-color);
@@ -335,20 +428,6 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
   background-color: var(--lightorange-color); 
-}
-
-.dog-image {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 250px;
-  z-index: 10;
-}
-
-.dog-image img {
-  width: 100%;
-  height: auto;
-  display: block;
 }
 
 
