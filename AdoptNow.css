@@ -80,6 +80,19 @@ header {
     padding: 0;
 }
 
+.nav-menu,
+.nav-user {
+display: flex;
+gap: 20px;
+list-style: none;
+margin: 0;
+padding: 0;
+}
+
+.nav-user {
+margin-left: auto;
+}
+
 .nav-link {
     color: var(--white-color);
     text-decoration: none;
@@ -104,28 +117,6 @@ header {
 .logo-img {
     width: 80px;
     height: auto;
-}
-
-.search-bar {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-}
-
-.search-bar input {
-    padding: 8px 12px;
-    border-radius: 8px;
-    border: none;
-    outline: none;
-    width: 300px;
-    background: #ddd;
-}
-
-.search-bar button {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: var(--font-size-n);
 }
 
 
@@ -280,6 +271,50 @@ input[type="number"]::placeholder {
 
 .hidden {
   display: none;
+}
+
+.button-container {
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+    margin-top: 15px; 
+    margin-bottom: 20px; 
+}
+
+.add-button,
+.remove-button {
+    width: 40px; 
+    height: 40px; 
+    padding: 0; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    font-size: 1.5rem; 
+    border-radius: 50%; 
+}
+
+.add-button {
+    background-color: var(--dark-color);
+    color: var(--white-color);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-button:hover {
+    background-color: var(--medium-color);
+}
+
+.remove-button {
+    background-color: #dc3545; /* Red color for remove */
+    color: var(--white-color);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.remove-button:hover {
+    background-color: #c82333;
 }
 
 button[type="submit"] {
@@ -548,4 +583,108 @@ button[type="submit"]:hover {
     .search-bar input {
         width: calc(100% - 50px); /* Adjust for button */
     }
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 100; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+}
+
+.modal-content {
+    background-color: var(--dark-color); /* Dark blue background */
+    margin: auto;
+    padding: 20px;
+    border: 1px solid var(--medium-color); /* Slight border */
+    border-radius: var(--border-radius-s); /* Rounded corners */
+    width: 80%; /* Could be a fixed width or max-width */
+    max-width: 500px; /* Max width for desktop */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    position: relative;
+    text-align: center;
+}
+
+.modal-header {
+    background-color: var(--dark-color);
+    padding: 10px 0;
+    border-bottom: none; /* No border as per image */
+    color: var(--white-color); /* White text */
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: var(--font-size-xl); /* Larger font for title */
+    font-weight: var(--font-weight-black);
+    color: var(--white-color);
+}
+
+.modal-body {
+    padding: 20px 0;
+}
+
+.modal-body p {
+    font-size: var(--font-size-m);
+    color: var(--white-color); /* White text */
+    margin: 0;
+}
+
+.modal-footer {
+    padding: 10px 0;
+    display: flex;
+    justify-content: center; /* Center the buttons */
+    gap: 20px; /* Space between buttons */
+}
+
+.modal-button {
+    padding: 10px 25px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: var(--font-size-m);
+    font-weight: var(--font-weight-semibold);
+    transition: background-color 0.3s ease;
+    width: 120px; /* Fixed width for buttons for uniformity */
+}
+
+.cancel-button {
+    background-color: var(--light-color); /* Light blue for cancel */
+    color: var(--dark-color);
+}
+
+.cancel-button:hover {
+    background-color: var(--medium-color); /* Slightly darker on hover */
+}
+
+.submit-button {
+    background-color: var(--orange-color); /* Orange for submit */
+    color: var(--white-color);
+}
+
+.submit-button:hover {
+    background-color: var(--lightorange-color); /* Lighter orange on hover */
+}
+
+.close-button {
+    color: var(--white-color);
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1; /* Adjust line height to center 'x' */
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--orange-color);
+    text-decoration: none;
 }

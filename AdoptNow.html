@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PawscuePH - Adopt Now</title>
     <link rel="stylesheet" href="AdoptNow.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     </head>
 <body>
   <header>
@@ -20,11 +21,10 @@
         <img src="Images/logo-pawscue.png" class="logo-img" alt="Pawscue PH Logo">
       </div>
 
-      <div class="search-bar">
-        <div class="search-input-wrapper">
-          <input type="text" placeholder="Search...">
-        </div>
-      </div>
+      <ul class="nav-user">
+        <li><a href="SignIn.html" class="nav-link">Sign In</a></li>
+        <li><a href="LogIn.html" class="nav-link">Login</a></li>
+      </ul>
     </nav>
   </header>
 
@@ -222,104 +222,131 @@
         </fieldset>
 
         <fieldset class="section">
-            <div class="form-group">
-                <label>Are there any other adults living in the household?<span class="required">*</span></label>
-                <div class="radio-group">
-                    <input type="radio" id="otherAdultsYes" name="otherAdults" value="Yes" required>
-                    <label for="otherAdultsYes">Yes</label>
-                    <input type="radio" id="otherAdultsNo" name="otherAdults" value="No">
-                    <label for="otherAdultsNo">No</label>
-                </div>
+          <div class="form-group">
+            <label>Are there any other adults living in the household?<span class="required">*</span></label>
+            <div class="radio-group">
+              <input type="radio" id="otherAdultsYes" name="otherAdults" value="Yes" required>
+              <label for="otherAdultsYes">Yes</label>
+              <input type="radio" id="otherAdultsNo" name="otherAdults" value="No">
+              <label for="otherAdultsNo">No</label>
             </div>
-        </fieldset>
+          </div>
+      </fieldset>
 
-        <fieldset id="adultInformationSection" class="section hidden">
-            <legend>Adult Information</legend>
-            <div class="form-group full-width">
-                <label for="adultName">Name<span class="required">*</span></label>
-                <input type="text" id="adultName" placeholder="First Name MI. Last Name">
+      <fieldset id="adultInformationSection" class="section hidden">
+        <legend>Adult Information</legend>
+        <div class="adult-info-entry">
+          <div class="form-group full-width">
+            <label for="adultName_0">Name<span class="required">*</span></label>
+            <input type="text" id="adultName_0" class="adult-name" placeholder="First Name MI. Last Name">
+          </div>
+          <div class="form-row">
+            <div class="form-group half-width">
+              <label for="adultEmployerName_0">Employer's name</label>
+              <input type="text" id="adultEmployerName_0" class="adult-employer-name" placeholder="First Name MI. Last Name">
             </div>
-            <div class="form-row">
-                <div class="form-group half-width">
-                    <label for="adultEmployerName">Employer's name</label>
-                    <input type="text" id="adultEmployerName" placeholder="First Name MI. Last Name">
-                </div>
-                <div class="form-group half-width">
-                    <label for="adultWorkContactNumber">Work Contact Number</label>
-                    <input type="text" id="adultWorkContactNumber" placeholder="Telephone/Cellular Phone Number">
-                </div>
+            <div class="form-group half-width">
+              <label for="adultWorkContactNumber_0">Work Contact Number</label>
+              <input type="text" id="adultWorkContactNumber_0" class="adult-work-contact-number" placeholder="Telephone/Cellular Phone Number">
             </div>
-            <div class="form-row">
-                <div class="form-group large-width">
-                    <label for="adultCompanyAddress">Company Address</label>
-                    <input type="text" id="adultCompanyAddress" placeholder="street, barangay/subdivision, city/municipality, province">
-                </div>
-                <div class="form-group small-width">
-                    <label for="adultWorkingHours">Working Hours</label>
-                    <input type="text" id="adultWorkingHours" placeholder="Number of working hours">
-                </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group large-width">
+              <label for="adultCompanyAddress_0">Company Address</label>
+              <input type="text" id="adultCompanyAddress_0" class="adult-company-address" placeholder="street, barangay/subdivision, city/municipality, province">
             </div>
-        </fieldset>
+            <div class="form-group small-width">
+              <label for="adultWorkingHours_0">Working Hours</label>
+              <input type="text" id="adultWorkingHours_0" class="adult-working-hours" placeholder="Number of working hours">
+            </div>
+          </div>
 
-        <fieldset class="section">
-            <div class="form-group">
-                <label>Do you own or have you owned other dog?<span class="required">*</span></label>
-                <div class="radio-group">
-                    <input type="radio" id="ownedDogYes" name="ownedDog" value="Yes" required>
-                    <label for="ownedDogYes">Yes</label>
-                    <input type="radio" id="ownedDogNo" name="ownedDog" value="No">
-                    <label for="ownedDogNo">No</label>
-                </div>
+          <div class="form-group">
+            <label>Are you allergic to pets?<span class="required">*</span></label>
+            <div class="radio-group">
+              <input type="radio" id="adultAllergicYes_0" name="adultAllergic_0" value="Yes" class="adult-allergic" required>
+              <label for="adultAllergicYes_0">Yes</label>
+              <input type="radio" id="adultAllergicNo_0" name="adultAllergic_0" value="No" class="adult-allergic">
+              <label for="adultAllergicNo_0">No</label>
             </div>
-        </fieldset>
+          </div>
+          </div>
+        <div id="additionalAdultsContainer"></div>
 
-        <fieldset id="petInformationSection" class="section hidden">
-            <legend>Pet Information</legend>
-            <div class="form-row">
-                <div class="form-group third-width">
-                    <label for="petBreed">Breed<span class="required">*</span></label>
-                    <input type="text" id="petBreed" required>
-                </div>
-                <div class="form-group third-width">
-                    <label for="petAge">Age<span class="required">*</span></label>
-                    <input type="number" id="petAge" min="0" required>
-                </div>
-                <div class="form-group third-width">
-                    <label>Spay/Neuter?<span class="required">*</span></label>
-                    <div class="radio-group">
-                        <input type="radio" id="spay" name="spayNeuter" value="Spay" required>
-                        <label for="spay">Spay</label>
-                        <input type="radio" id="neuter" name="spayNeuter" value="Neuter">
-                        <label for="neuter">Neuter</label>
-                        <input type="radio" id="neither" name="spayNeuter" value="Neither">
-                        <label for="neither">No</label>
-                    </div>
-                </div>
+        <div class="button-container">
+            <button type="button" id="addAdultButton" class="add-button">
+                <i class="bi bi-plus-circle"></i>
+            </button>
+        </div>
+      </fieldset>
+
+      <fieldset class="section">
+        <div class="form-group">
+          <label>Do you own or have you owned other dog?<span class="required">*</span></label>
+          <div class="radio-group">
+            <input type="radio" id="ownedDogYes" name="ownedDog" value="Yes" required>
+            <label for="ownedDogYes">Yes</label>
+            <input type="radio" id="ownedDogNo" name="ownedDog" value="No">
+            <label for="ownedDogNo">No</label>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset id="petInformationSection" class="section hidden">
+        <legend>Pet Information</legend>
+        <div class="pet-info-entry">
+          <div class="form-row">
+            <div class="form-group third-width">
+              <label for="petBreed_0">Breed<span class="required">*</span></label>
+              <input type="text" id="petBreed_0" class="pet-breed" required>
             </div>
-
-            <div class="form-row">
-                <div class="form-group half-width">
-                    <label for="yearsOwned">Years owned<span class="required">*</span></label>
-                    <input type="number" id="yearsOwned" min="0" required>
-                </div>
-                <div class="form-group half-width">
-                    <label for="stillHavePet">Do you still have this pet? If not, where is it?<span class="required">*</span></label>
-                    <input type="text" id="stillHavePet" required>
-                </div>
+            <div class="form-group third-width">
+              <label for="petAge_0">Age<span class="required">*</span></label>
+              <input type="number" id="petAge_0" class="pet-age" min="0" required>
             </div>
-
-            <div class="form-group">
-                <label>Is it Vaccinated?<span class="required">*</span></label>
-                <div class="radio-group">
-                    <input type="radio" id="vaccinatedYes" name="vaccinated" value="Yes" required>
-                    <label for="vaccinatedYes">Yes</label>
-                    <input type="radio" id="vaccinatedNo" name="vaccinated" value="No">
-                    <label for="vaccinatedNo">No</label>
-                </div>
+            <div class="form-group third-width">
+              <label>Spay/Neuter?<span class="required">*</span></label>
+              <div class="radio-group">
+                <input type="radio" id="spay_0" name="spayNeuter_0" value="Spay" required>
+                <label for="spay_0">Spay</label>
+                <input type="radio" id="neuter_0" name="spayNeuter_0" value="Neuter">
+                <label for="neuter_0">Neuter</label>
+                <input type="radio" id="neither_0" name="spayNeuter_0" value="Neither">
+                <label for="neither_0">No</label>
+              </div>
             </div>
-        </fieldset>
+          </div>
 
-        <button type="submit">Submit Application</button>
+          <div class="form-row">
+            <div class="form-group half-width">
+              <label for="yearsOwned_0">Years owned<span class="required">*</span></label>
+              <input type="number" id="yearsOwned_0" class="pet-years-owned" min="0" required>
+            </div>
+            <div class="form-group half-width">
+              <label for="stillHavePet_0">Do you still have this pet? If not, where is it?<span class="required">*</span></label>
+              <input type="text" id="stillHavePet_0" class="pet-still-have" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Is it Vaccinated?<span class="required">*</span></label>
+            <div class="radio-group">
+              <input type="radio" id="vaccinatedYes_0" name="vaccinated_0" value="Yes" required>
+              <label for="vaccinatedYes_0">Yes</label>
+              <input type="radio" id="vaccinatedNo_0" name="vaccinated_0" value="No">
+              <label for="vaccinatedNo_0">No</label>
+            </div>
+          </div>
+        </div>
+        <div id="additionalPetsContainer"></div>
+        <div class="button-container">
+          <button type="button" id="addPetButton" class="add-button">
+            <i class="bi bi-plus-circle"></i>
+          </button>
+        </div>
+      </fieldset>
+
+      <button type="submit">Submit Application</button>
     </form>
   </div>
   <div class="dog-image">
@@ -364,5 +391,22 @@
 
   <script src="script.js"></script>
   <script src="name.js"></script>
+
+  <div id="confirmationModal" class="modal">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <div class="modal-header">
+            <h2>Application Submission Confirmation</h2>
+        </div>
+        <div class="modal-body">
+            <p>Are you sure you want to submit this form?</p>
+        </div>
+        <div class="modal-footer">
+            <button id="cancelSubmission" class="modal-button cancel-button">Cancel</button>
+            <button id="confirmSubmission" class="modal-button submit-button">Submit</button>
+        </div>
+    </div>
+  </div>
+
 </body>
 </html>
