@@ -38,7 +38,7 @@
 
               <div class="buttons">
                 <a href="AboutUs.html" class="learn-more-button">LEARN MORE<i class="bi bi-arrow-right" aria-hidden="true"></i></a>
-              <a href="#" class="donate-button">DONATE NOW<i class="bi bi-arrow-right" aria-hidden="true"></i></a> </div>
+              <a href="#support-paw-section" class="donate-button">DONATE NOW<i class="bi bi-arrow-right" aria-hidden="true"></i></a> </div>
             </div>
             <div class="dog-image">
               <img src="Images/home page.png" alt="German Shepherd dog" class="hero-image">
@@ -49,12 +49,6 @@
         <section class="goals-section">
           <h2 class="section-title">GOALS:</h2>
           <div class="carousel-wrapper">
-            <!-- Slide Selectors -->
-            <input type="radio" name="slider" id="slide-1" checked>
-            <input type="radio" name="slider" id="slide-2">
-            <input type="radio" name="slider" id="slide-3">
-
-            <!-- Slides -->
             <div class="carousel-container">
               <div class="carousel-slide">
                 <img src="Images/first-goal.png" alt="Dog in kennel, representing rescue">
@@ -67,26 +61,15 @@
               </div>
             </div>
 
-            <!-- Navigation Arrows -->
             <div class="carousel-arrows">
-              <!-- On slide 1, show right arrow to slide 2 -->
-              <label for="slide-2" class="carousel-arrow right"><i class="bi bi-arrow-right"></i></label>
-              <!-- On slide 2, show left to slide 1 and right to slide 3 -->
-              <label for="slide-1" class="carousel-arrow left"><i class="bi bi-arrow-left"></i></label>
-              <label for="slide-3" class="carousel-arrow right"><i class="bi bi-arrow-right"></i></label>
-              <!-- On slide 3, show left arrow to slide 2 -->
-              <label for="slide-2" class="carousel-arrow left"><i class="bi bi-arrow-left"></i></label>
+              <button class="carousel-arrow left" id="prevSlide"><i class="bi bi-arrow-left"></i></button>
+              <button class="carousel-arrow right" id="nextSlide"><i class="bi bi-arrow-right"></i></button>
             </div>
 
-          <!-- Pagination -->
-          <div class="carousel-pagination">
-            <label for="slide-1" class="dot"></label>
-            <label for="slide-2" class="dot"></label>
-            <label for="slide-3" class="dot"></label>
-          </div>
+          <div class="carousel-pagination" id="carouselPagination"></div>
         </section>
 
-        <section class="support-paw-section">
+        <section class="support-paw-section" id="support-paw-section">
           <div class="support-paw-container">
             <h2 class="support-paw-title">SUPPORT A PAW</h2>
             <p class="support-paw-description">Every pet deserves a loving home — and with your help, we can make that happen. Your monetary donation goes directly toward food, medical care, and safe shelter for our animals in need</p>
@@ -149,5 +132,6 @@
 
       <div class="footer-line bottom-line"></div>
     </footer>
+  <script src="HomePage.js"></script>
   </body>
 </html>

@@ -257,10 +257,6 @@ header {
     text-transform: uppercase;
 }
 
-.carousel-wrapper input[type="radio"] {
-    display: none;
-}
-
 .carousel-wrapper {
     position: relative;
     width: 100%;
@@ -273,19 +269,18 @@ header {
 
 .carousel-container {
     display: flex;
-    width: 300%; /* 3 slides */
+    width: 300%; 
     transition: transform 0.8s ease-in-out;
-    scroll-behavior: smooth; /* optional for smooth scroll */
 }
 
 .carousel-slide {
-    flex: 0 0 33.3333%; /* exactly 1/3rd width */
+    flex: 0 0 33.3333%; 
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: var(--dark-color);
     border-radius: var(--border-radius-s);
-    padding: 0; /* no padding */
+    padding: 0;
 }
 
 .carousel-slide img {
@@ -293,35 +288,9 @@ header {
     height: 100%;
     max-height: 450px;
     border-radius: var(--border-radius-s);
-    object-fit: cover; /* fill container */
+    object-fit: cover;
     display: block;
 }
-
-
-#slide-1:checked ~ .carousel-inner .carousel-container {
-  transform: translateX(0%);
-}
-#slide-2:checked ~ .carousel-inner .carousel-container {
-  transform: translateX(-100%);
-}
-#slide-3:checked ~ .carousel-inner .carousel-container {
-  transform: translateX(-200%);
-}
-
-#slide-1:checked ~ .carousel-inner .carousel-arrows .carousel-arrow.right[for="slide-2"],
-#slide-2:checked ~ .carousel-inner .carousel-arrows .carousel-arrow.left[for="slide-1"],
-#slide-2:checked ~ .carousel-inner .carousel-arrows .carousel-arrow.right[for="slide-3"],
-#slide-3:checked ~ .carousel-inner .carousel-arrows .carousel-arrow.left[for="slide-2"] {
-  display: block;
-}
-
-#slide-1:checked ~ .carousel-inner .carousel-pagination label[for="slide-1"],
-#slide-2:checked ~ .carousel-inner .carousel-pagination label[for="slide-2"],
-#slide-3:checked ~ .carousel-inner .carousel-pagination label[for="slide-3"] {
-  background-color: var(--orange-color);
-}
-
-
 
 .carousel-arrows {
     position: absolute;
@@ -330,9 +299,9 @@ header {
     display: flex;
     justify-content: space-between; 
     transform: translateY(-50%);
-    pointer-events: none; 
     z-index: 10;
     padding: 0 20px; 
+    pointer-events: none; 
 }
 
 .carousel-arrow {
@@ -343,22 +312,7 @@ header {
     font-size: 1.5rem;
     border-radius: var(--border-radius-circle);
     cursor: pointer;
-    pointer-events: auto; 
-    display: none; /* Hide by default */
-}
-
-/* Show right arrow on slide 1 */
-#slide-1:checked ~ .carousel-arrows .carousel-arrow.right[for="slide-2"] {
-    display: block;
-}
-/* Show left and right arrows on slide 2 */
-#slide-2:checked ~ .carousel-arrows .carousel-arrow.left[for="slide-1"],
-#slide-2:checked ~ .carousel-arrows .carousel-arrow.right[for="slide-3"] {
-    display: block;
-}
-/* Show left arrow on slide 3 */
-#slide-3:checked ~ .carousel-arrows .carousel-arrow.left[for="slide-2"] {
-    display: block;
+    pointer-events: auto;
 }
 
 .carousel-arrow.left {
@@ -368,6 +322,11 @@ header {
 .carousel-arrow.right {
     margin-left: auto; 
 }
+
+.carousel-arrow:disabled {
+    display: none;
+}
+
 
 .carousel-pagination {
     display: flex;
@@ -385,11 +344,11 @@ header {
     transition: background-color 0.3s ease;
 }
 
-#slide-1:checked ~ .carousel-pagination label[for="slide-1"],
-#slide-2:checked ~ .carousel-pagination label[for="slide-2"],
-#slide-3:checked ~ .carousel-pagination label[for="slide-3"] {
+.carousel-pagination .dot.active {
     background-color: var(--orange-color);
 }
+
+
 
 @media (max-width: 768px) {
     .section-title {
@@ -405,7 +364,6 @@ header {
         font-size: 1.2rem;
     }
 
-    /* Stack buttons on mobile */
     .button-container {
         flex-direction: column;
         gap: 10px;
