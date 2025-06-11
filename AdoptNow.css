@@ -119,6 +119,10 @@ margin-left: auto;
     height: auto;
 }
 
+.hidden {
+  display: none !important;
+}
+
 .hero-section {
   background-color: var(--light-color);
   text-align: center;
@@ -166,16 +170,17 @@ margin-left: auto;
 }
 
 .how-to-apply {
-  background-color: var(--dark-color);
-  color: var(--white-color);
-  padding: 50px 20px;
+  background-color: var(--medium-color);
+  color: var(--dark-color);
+  padding: 30px 20px 50px;
   text-align: center;
   width: 100vw;           
   margin-left: calc(-50vw + 50%);
+  box-shadow: inset;
 }
 
 .how-to-apply h2 {
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-xxl);
   font-weight: var(--font-weight-bold);
   margin-bottom: 30px;
 }
@@ -184,31 +189,43 @@ margin-left: auto;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 30px;
+  gap: 50px;
 }
 
 .step {
-  background-color: var(--medium-color);
+  background-color: var(--dark-color);
   padding: 20px;
-  border-radius: var(--border-radius-s);
+  border-radius: var(--border-radius-m);
   width: 250px;
   max-width: 90%;
   text-align: center;
 }
 
 .step .icon {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
+  font-size: 2rem;
+  margin: 0 auto 15px;
+  background-color: var(--white-color); 
+  color: black; 
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%; 
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
 }
 
 .step h3 {
-  font-size: var(--font-size-m);
+  font-size: var(--font-size-l);
   font-weight: var(--font-weight-semibold);
   margin-bottom: 10px;
+  color: var(--white-color);
 }
 
 .step p {
   font-size: var(--font-size-s);
+  color: var(--white-color);
 }
 
 
