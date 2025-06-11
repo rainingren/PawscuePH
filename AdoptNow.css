@@ -162,8 +162,7 @@ h1 {
 fieldset {
   border: none;
   padding: 0;
-  margin-bottom: 20px;
-  padding: 20px;
+  margin-bottom: 10px;
 }
 
 legend {
@@ -176,7 +175,7 @@ legend {
 }
 
 .form-group {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 label {
@@ -252,6 +251,21 @@ input[type="number"]::placeholder {
   flex-basis: calc(25% - 15px);
 }
 
+.form-row.pets-screens-row .narrow-width {
+    flex-basis: 22%; 
+    min-width: 150px; 
+}
+
+.form-row.pets-screens-row .landlord-width {
+    flex-basis: 55%; 
+    min-width: 280px; 
+}
+
+.form-row.pets-screens-row .screens-width {
+    flex-basis: 23%; 
+    min-width: 170px; 
+}
+
 .form-row .large-width {
   flex-basis: calc(70% - 10px);
 }
@@ -280,6 +294,8 @@ button[type="submit"] {
   margin: 30px auto 0;
   width: 200px;
   transition: background-color 0.3s ease;
+  font-family: "Poppins";
+  font-weight: var(--font-weight-semibold);
 }
 
 button[type="submit"]:hover {
