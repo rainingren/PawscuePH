@@ -70,15 +70,15 @@ header {
 
 .nav-menu,
 .nav-user {
-  display: flex;
-  gap: 20px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+display: flex;
+gap: 20px;
+list-style: none;
+margin: 0;
+padding: 0;
 }
 
 .nav-user {
-  margin-left: auto;
+margin-left: auto;
 }
 
 .nav-link {
