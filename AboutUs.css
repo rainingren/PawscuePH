@@ -102,6 +102,10 @@ header {
   height: auto;
 }
 
+.hidden {
+    display: none;
+}
+
 .heading {
   width: 90%;
   display: flex;

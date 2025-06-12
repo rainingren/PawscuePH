@@ -21,8 +21,9 @@
         </ul>
 
         <ul class="nav-user">
-          <li><a href="SignIn.html" class="nav-link">Sign In</a></li>
-          <li><a href="LogIn.html" class="nav-link">Login</a></li>
+          <li id="signInLink"><a href="SignIn.html" class="nav-link">Sign In</a></li>
+          <li id="logInLink"><a href="LogIn.html" class="nav-link">Login</a></li>
+          <li id="logoutContainer" class="hidden"><a href="#" class="nav-link" id="logoutBtn">Logout</a></li>
         </ul>
         <div class="nav-logo">
           <img src="Images/logo-pawscue.png" class="logo-img" alt="Logo" />
@@ -115,7 +116,6 @@
   </div>
 </div>
 
-
     <footer class="footer">
       <div class="footer-line top-line"></div>
 
@@ -151,5 +151,8 @@
 
       <div class="footer-line bottom-line"></div>
     </footer>  
+
+    <script src="auth-navigation.js"></script>
+
   </body>
 </html>
