@@ -254,7 +254,7 @@ h1 {
   margin-top: 150px;
   top: 150px;
   right: 20px;
-  z-index: 1001; 
+  z-index: 4; 
   background-color: var(--dark-color);
   color: white;
   border: none;
