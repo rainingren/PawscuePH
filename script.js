@@ -1,15 +1,21 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    const form = document.querySelector('form');
+    const form = document.getElementById('adoptionForm'); 
     const confirmationModal = document.getElementById('confirmationModal');
     const confirmSubmissionButton = document.getElementById('confirmSubmission');
     const cancelSubmissionButton = document.getElementById('cancelSubmission');
-    const closeModalButton = confirmationModal.querySelector('.close-button'); 
-    const formCloseButton = document.querySelector('.form-close-button'); 
+    const closeModalButton = confirmationModal.querySelector('.close-button');
+    const formCloseButton = document.querySelector('.form-close-button');
     const applyNowBtn = document.getElementById('applyNowBtn');
     const heroSection = document.getElementById('heroSection');
     const howToApplySection = document.getElementById('howToApplySection');
     const applicationFormContainer = document.getElementById('applicationFormContainer');
+
+    const signInLink = document.getElementById('signInLink');
+    const logInLink = document.getElementById('logInLink');
+    const logoutContainer = document.getElementById('logoutContainer');
+    const logoutBtn = document.getElementById('logoutBtn');
+
 
     let isFormSubmitting = false;
 
@@ -19,9 +25,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function setLoginStatus(status) {
         localStorage.setItem('isLoggedIn', status ? 'true' : 'false');
+        updateNavigationVisibility(); 
     }
 
-    // Function to handle form submission status
     function setFormSubmittedStatus(status) {
         localStorage.setItem('applicationSubmitted', status ? 'true' : 'false');
     }
@@ -30,67 +36,84 @@ document.addEventListener('DOMContentLoaded', function() {
         return localStorage.getItem('applicationSubmitted') === 'true';
     }
 
-    // Function to show hero and how-to-apply sections and hide the form
     function showDefaultSections() {
         heroSection.classList.remove('hidden');
         howToApplySection.classList.remove('hidden');
         applicationFormContainer.classList.add('hidden');
-        applyNowBtn.textContent = 'Apply Now'; // Reset button text
+        applyNowBtn.textContent = 'Apply Now';
     }
 
-    // Initial state setup on page load
     function initializeAdoptNowPage() {
         if (getFormSubmittedStatus()) {
             applyNowBtn.textContent = 'View Form';
             heroSection.classList.add('hidden');
             howToApplySection.classList.add('hidden');
             applicationFormContainer.classList.remove('hidden');
-            // Disable form fields if it's already submitted and being viewed
             form.querySelectorAll('input, select, textarea, button[type="submit"]').forEach(element => {
                 if (element.id !== 'confirmSubmission' && element.id !== 'cancelSubmission' && element.id !== 'applyNowBtn') {
                     element.disabled = true;
                 }
             });
-            if (formCloseButton) { // Hide the form close button if form is just for viewing
+            if (formCloseButton) {
                 formCloseButton.classList.add('hidden');
             }
         } else {
             applicationFormContainer.classList.add('hidden');
             if (formCloseButton) {
-                formCloseButton.classList.remove('hidden'); // Ensure it's visible when not submitted
+                formCloseButton.classList.remove('hidden');
             }
+        }
+        updateNavigationVisibility(); 
+    }
+
+    function updateNavigationVisibility() {
+        if (checkLoginStatus()) {
+            if (signInLink) signInLink.classList.add('hidden');
+            if (logInLink) logInLink.classList.add('hidden');
+            if (logoutContainer) logoutContainer.classList.remove('hidden');
+        } else {
+            if (signInLink) signInLink.classList.remove('hidden');
+            if (logInLink) logInLink.classList.remove('hidden');
+            if (logoutContainer) logoutContainer.classList.add('hidden');
         }
     }
 
-    // Event listener for the "Apply Now" button
+
     if (applyNowBtn) {
         applyNowBtn.addEventListener('click', function(event) {
-            event.preventDefault(); // Prevent default link behavior
+            event.preventDefault();
 
             if (!checkLoginStatus()) {
-                // If not logged in, redirect to Sign In page
-                localStorage.setItem('redirectAfterLogin', 'AdoptNow.html'); // Store current page for redirection
+                localStorage.setItem('redirectAfterLogin', 'AdoptNow.html');
                 window.location.href = 'SignIn.html';
             } else {
-                // If logged in, toggle form visibility
                 if (getFormSubmittedStatus()) {
-                    viewSubmittedForm(); // If already submitted, use view logic
+                    viewSubmittedForm();
                 } else {
-                    toggleFormVisibility(); // Otherwise, use toggle logic for filling form
+                    toggleFormVisibility();
                 }
             }
         });
     }
 
-    // Modify form submission confirmation
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function(event) {
+            event.preventDefault();
+            setLoginStatus(false); 
+            localStorage.removeItem('applicationSubmitted'); 
+            console.log('User logged out.');
+            window.location.href = 'HomePage.html'; 
+        });
+    }
+
     if (form && confirmationModal) {
         form.addEventListener('submit', function(event) {
-            event.preventDefault(); 
+            event.preventDefault();
 
             if (form.checkValidity()) {
                 confirmationModal.style.display = 'flex';
             } else {
-                form.reportValidity(); // Show native browser validation messages
+                form.reportValidity();
             }
         });
 
@@ -98,21 +121,19 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!isFormSubmitting) {
                 isFormSubmitting = true;
                 confirmationModal.style.display = 'none';
-                // Simulate form submission success
                 console.log('Application submitted successfully!');
-                setFormSubmittedStatus(true); // Mark form as submitted
-                applyNowBtn.textContent = 'View Form'; // Change button text to "View Form"
-                
-                // Disable all form fields except the submission buttons in the modal and the apply/view button
+                setFormSubmittedStatus(true);
+                applyNowBtn.textContent = 'View Form';
+
                 form.querySelectorAll('input, select, textarea, button[type="submit"]').forEach(element => {
                     if (element.id !== 'confirmSubmission' && element.id !== 'cancelSubmission' && element.id !== 'applyNowBtn') {
                         element.disabled = true;
                     }
                 });
-                if (formCloseButton) { // Hide the form close button after submission
+                if (formCloseButton) {
                     formCloseButton.classList.add('hidden');
                 }
-                isFormSubmitting = false; // Reset for future interactions if needed
+                isFormSubmitting = false;
             }
         });
 
@@ -121,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Application submission cancelled by user.');
         });
 
-        closeModalButton.addEventListener('click', function() { // Used closeModalButton
+        closeModalButton.addEventListener('click', function() {
             confirmationModal.style.display = 'none';
             console.log('Application submission cancelled by closing modal.');
         });
@@ -134,21 +155,18 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // New: Event listener for the form's close button
     if (formCloseButton) {
         formCloseButton.addEventListener('click', function() {
             showDefaultSections();
         });
     }
 
-    // Helper function for toggling form visibility (used when button is "Apply Now" or "Hide Form")
     function toggleFormVisibility() {
         if (applicationFormContainer.classList.contains('hidden')) {
             heroSection.classList.add('hidden');
             howToApplySection.classList.add('hidden');
             applicationFormContainer.classList.remove('hidden');
             applyNowBtn.textContent = 'Hide Form';
-            // Ensure form fields are enabled when displaying for editing
             form.querySelectorAll('input, select, textarea, button[type="submit"]').forEach(element => {
                 if (element.id !== 'confirmSubmission' && element.id !== 'cancelSubmission' && element.id !== 'applyNowBtn') {
                     element.disabled = false;
@@ -162,32 +180,28 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Helper function for viewing submitted form (used when button is "View Form")
     function viewSubmittedForm() {
         if (applicationFormContainer.classList.contains('hidden')) {
             heroSection.classList.add('hidden');
             howToApplySection.classList.add('hidden');
             applicationFormContainer.classList.remove('hidden');
             applyNowBtn.textContent = 'Hide Form';
-            // Disable form fields when viewing
             form.querySelectorAll('input, select, textarea, button[type="submit"]').forEach(element => {
                 if (element.id !== 'confirmSubmission' && element.id !== 'cancelSubmission' && element.id !== 'applyNowBtn') {
                     element.disabled = true;
                 }
             });
             if (formCloseButton) {
-                formCloseButton.classList.add('hidden'); // Hide close button in view mode
+                formCloseButton.classList.add('hidden');
             }
         } else {
             showDefaultSections();
-            applyNowBtn.textContent = 'View Form'; // Stays "View Form" when hidden after submission
+            applyNowBtn.textContent = 'View Form';
         }
     }
 
-    // Initial setup on page load
-    initializeAdoptNowPage();
+    initializeAdoptNowPage(); 
 
-    // --- Existing script.js functionality below (retained) ---
     const spouseYesRadio = document.getElementById('spouseYes');
     const spouseNoRadio = document.getElementById('spouseNo');
     const spouseInformationSection = document.getElementById('spouseInformationSection');
@@ -213,8 +227,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (isVisible) {
             sectionElement.classList.remove('hidden');
             sectionElement.querySelectorAll('input, select, textarea').forEach(input => {
-                // Only make fields required if the form is NOT in "view submitted" mode
-                if (!getFormSubmittedStatus()) { 
+                if (!getFormSubmittedStatus()) {
                     if (sectionElement.id === 'spouseInformationSection' && input.id === 'spouseName') {
                         input.required = true;
                     } else if (sectionElement.id === 'adultInformationSection' && input.closest('.adult-info-entry')) {
@@ -294,10 +307,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 <label for="adultName_${adultCount + 1}">Adult's name<span class="required">*</span></label>
                 <input type="text" id="adultName_${adultCount + 1}" class="adult-name" placeholder="First Name MI. Last Name" required>
             </div>
-            <div class="form-group full-width">
-                <label for="adultRelationship_${adultCount + 1}">Relationship to applicant<span class="required">*</span></label>
-                <input type="text" id="adultRelationship_${adultCount + 1}" class="adult-relationship" placeholder="e.g., Parent, Sibling, Friend" required>
-            </div>
             <div class="form-row">
                 <div class="form-group half-width">
                     <label for="adultEmployerName_${adultCount + 1}">Employer's name</label>
@@ -352,15 +361,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    function removeLastAdultEntry() {
-        const dynamicAdults = additionalAdultsContainer.querySelectorAll('.adult-info-entry-dynamic');
-        if (dynamicAdults.length > 0) {
-            dynamicAdults[dynamicAdults.length - 1].remove();
-            adultCount--;
-            updateAdultButtonsVisibility();
-        }
-    }
-
     addAdultButton.addEventListener('click', addAdultEntry);
 
     let petCount = 0;
@@ -369,22 +369,48 @@ document.addEventListener('DOMContentLoaded', function() {
         const petInfoEntry = document.createElement('div');
         petInfoEntry.classList.add('pet-info-entry-dynamic');
         petInfoEntry.innerHTML = `
-            <div class="form-group full-width">
-                <label for="petBreed_${petCount + 1}">Breed<span class="required">*</span></label>
-                <input type="text" id="petBreed_${petCount + 1}" class="pet-breed" placeholder="e.g., Golden Retriever" required>
+            <div class="form-row">
+            <div class="form-group third-width">
+              <label for="petBreed_${petCount + 1}">Breed<span class="required">*</span></label>
+              <input type="text" id="petBreed_${petCount + 1}" class="pet-breed" required>
             </div>
-            <div class="form-group full-width">
-                <label for="petAge_${petCount + 1}">Age<span class="required">*</span></label>
-                <input type="text" id="petAge_${petCount + 1}" class="pet-age" placeholder="e.g., 3 years" required>
+            <div class="form-group third-width">
+              <label for="petAge_${petCount + 1}">Age<span class="required">*</span></label>
+              <input type="number" id="petAge_${petCount + 1}" class="pet-age" min="0" required>
             </div>
-            <div class="form-group full-width">
-                <label for="petSex_${petCount + 1}">Sex<span class="required">*</span></label>
-                <input type="text" id="petSex_${petCount + 1}" class="pet-sex" placeholder="Male/Female" required>
+            <div class="form-group third-width">
+              <label>Spay/Neuter?<span class="required">*</span></label>
+              <div class="radio-group">
+                <input type="radio" id="spay_${petCount + 1}" name="spayNeuter_${petCount + 1}" value="Spay" required>
+                <label for="spay_${petCount + 1}">Spay</label>
+                <input type="radio" id="neuter_${petCount + 1}" name="spayNeuter_${petCount + 1}" value="Neuter">
+                <label for="neuter_${petCount + 1}">Neuter</label>
+                <input type="radio" id="neither_${petCount + 1}" name="spayNeuter_${petCount + 1}" value="Neither">
+                <label for="neither_${petCount + 1}">No</label>
+              </div>
             </div>
-            <div class="form-group full-width">
-                <label for="petSpayedNeutered_${petCount + 1}">Spayed/Neutered?<span class="required">*</span></label>
-                <input type="text" id="petSpayedNeutered_${petCount + 1}" class="pet-spayed-neutered" placeholder="Yes/No" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group half-width">
+              <label for="yearsOwned_${petCount + 1}">Years owned<span class="required">*</span></label>
+              <input type="number" id="yearsOwned_${petCount + 1}" class="pet-years-owned" min="0" required>
             </div>
+            <div class="form-group half-width">
+              <label for="stillHavePet_${petCount + 1}">Do you still have this pet? If not, where is it?<span class="required">*</span></label>
+              <input type="text" id="stillHavePet_${petCount + 1}" class="pet-still-have" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Is it Vaccinated?<span class="required">*</span></label>
+            <div class="radio-group">
+              <input type="radio" id="vaccinatedYes_${petCount + 1}" name="vaccinated_${petCount + 1}" value="Yes" required>
+              <label for="vaccinatedYes_${petCount + 1}">Yes</label>
+              <input type="radio" id="vaccinatedNo_${petCount + 1}" name="vaccinated_${petCount + 1}" value="No">
+              <label for="vaccinatedNo_${petCount + 1}">No</label>
+            </div>
+          </div>
             <hr>
         `;
         additionalPetsContainer.appendChild(petInfoEntry);

@@ -249,21 +249,27 @@ h1 {
 }
 
 .form-close-button {
-    position: absolute;
-    top: 15px; /* Adjust as needed */
-    right: 20px; /* Adjust as needed */
-    font-size: 28px;
-    font-weight: bold;
-    color: var(--dark-color); /* Match form text color */
+    position: fixed; 
+    top: 150px; 
+    right: 20px; 
+    z-index: 1000;
+    background-color: var(--dark-color); 
+    color: var(--white-color); 
+    border: none;
+    border-radius: 50%; 
+    width: 40px; 
+    height: 40px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-l);
     cursor: pointer;
-    line-height: 1;
-    z-index: 10; /* Ensure it's above other form elements */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); 
+    transition: background-color 0.3s ease;
 }
 
-.form-close-button:hover,
-.form-close-button:focus {
-    color: var(--orange-color);
-    text-decoration: none;
+.form-close-button:hover {
+    background-color: var(--medium-color); 
 }
 
 .required-fields-note {
