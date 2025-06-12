@@ -5,6 +5,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextButton = document.getElementById('nextSlide');
     const paginationDotsContainer = document.getElementById('carouselPagination');
 
+    const signInLink = document.querySelector('.nav-user a[href="SignIn.html"]');
+    const logInLink = document.querySelector('.nav-user a[href="LogIn.html"]');
+    const logoutContainer = document.getElementById('logoutContainer');
+    const logoutBtn = document.getElementById('logoutBtn');
+
     let currentIndex = 0;
     const totalSlides = slides.length;
 
@@ -56,4 +61,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initial carousel setup
     updateCarousel();
+
+    // Check login state
+    function checkLoginStatus() {
+        return localStorage.getItem('isLoggedIn') === 'true';
+    }
+
+    function updateNavigationVisibility() {
+        if (checkLoginStatus()) {
+            if (signInLink) signInLink.classList.add('hidden');
+            if (logInLink) logInLink.classList.add('hidden');
+            if (logoutContainer) logoutContainer.classList.remove('hidden');
+        } else {
+            if (signInLink) signInLink.classList.remove('hidden');
+            if (logInLink) logInLink.classList.remove('hidden');
+            if (logoutContainer) logoutContainer.classList.add('hidden');
+        }
+    }
+
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.setItem('isLoggedIn', 'false');
+            updateNavigationVisibility();
+        });
+    }
+
+    updateNavigationVisibility();
 });
