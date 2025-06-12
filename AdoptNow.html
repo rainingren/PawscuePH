@@ -299,9 +299,9 @@
           <div class="form-group">
             <label>Are you allergic to pets?<span class="required">*</span></label>
             <div class="radio-group">
-              <input type="radio" id="adultAllergicYes_0" name="adultAllergic_0" value="Yes" class="adult-allergic" required>
+              <input type="radio" id="adultAllergicYes_0" name="adultAllergic_0" value=true class="adult-allergic" required>
               <label for="adultAllergicYes_0">Yes</label>
-              <input type="radio" id="adultAllergicNo_0" name="adultAllergic_0" value="No" class="adult-allergic">
+              <input type="radio" id="adultAllergicNo_0" name="adultAllergic_0" value=false class="adult-allergic">
               <label for="adultAllergicNo_0">No</label>
             </div>
           </div>
@@ -342,9 +342,9 @@
             <div class="form-group third-width">
               <label>Spay/Neuter?<span class="required">*</span></label>
               <div class="radio-group">
-                <input type="radio" id="spay_0" name="spayNeuter_0" value="Spay" required>
+                <input type="radio" id="spay_0" name="spayNeuter_0" value="Spayed" required>
                 <label for="spay_0">Spay</label>
-                <input type="radio" id="neuter_0" name="spayNeuter_0" value="Neuter">
+                <input type="radio" id="neuter_0" name="spayNeuter_0" value="Neutered">
                 <label for="neuter_0">Neuter</label>
                 <input type="radio" id="neither_0" name="spayNeuter_0" value="Neither">
                 <label for="neither_0">No</label>
@@ -373,9 +373,9 @@
           <div class="form-group">
             <label>Is it Vaccinated?<span class="required">*</span></label>
             <div class="radio-group">
-              <input type="radio" id="vaccinatedYes_0" name="vaccinated_0" value="Yes" required>
+              <input type="radio" id="vaccinatedYes_0" name="vaccinated_0" value=true required>
               <label for="vaccinatedYes_0">Yes</label>
-              <input type="radio" id="vaccinatedNo_0" name="vaccinated_0" value="No">
+              <input type="radio" id="vaccinatedNo_0" name="vaccinated_0" value=false>
               <label for="vaccinatedNo_0">No</label>
             </div>
           </div>
@@ -420,7 +420,7 @@
               <label for="working">Working</label>
               <input type="radio" id="retired" name="employmentStatus" value="retired">
               <label for="retired">Retired</label>
-              <input type="radio" id="attendingSchool" name="employmentStatus" value="attendingSchool">
+              <input type="radio" id="attendingSchool" name="employmentStatus" value="attending School">
               <label for="attendingSchool">Attending School</label>
               <input type="radio" id="homemaker" name="employmentStatus" value="homemaker">
               <label for="homemaker">Homemaker</label>
