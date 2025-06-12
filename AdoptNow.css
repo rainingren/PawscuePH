@@ -248,6 +248,24 @@ h1 {
   font-family: "Poppins";
 }
 
+.form-close-button {
+    position: absolute;
+    top: 15px; /* Adjust as needed */
+    right: 20px; /* Adjust as needed */
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--dark-color); /* Match form text color */
+    cursor: pointer;
+    line-height: 1;
+    z-index: 10; /* Ensure it's above other form elements */
+}
+
+.form-close-button:hover,
+.form-close-button:focus {
+    color: var(--orange-color);
+    text-decoration: none;
+}
+
 .required-fields-note {
   text-align: center;
   color: black;

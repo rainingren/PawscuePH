@@ -4,9 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const confirmationModal = document.getElementById('confirmationModal');
     const confirmSubmissionButton = document.getElementById('confirmSubmission');
     const cancelSubmissionButton = document.getElementById('cancelSubmission');
-    const closeButton = document.querySelector('.close-button');
-
-    // New elements for AdoptNow.html functionality
+    const closeModalButton = confirmationModal.querySelector('.close-button'); 
+    const formCloseButton = document.querySelector('.form-close-button'); 
     const applyNowBtn = document.getElementById('applyNowBtn');
     const heroSection = document.getElementById('heroSection');
     const howToApplySection = document.getElementById('howToApplySection');
@@ -14,16 +13,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let isFormSubmitting = false;
 
-    // --- AdoptNow.html Specific Logic ---
-
-    // Function to check login status (mock for demonstration)
     function checkLoginStatus() {
-        // In a real application, this would come from a server-side session or a secure token.
-        // For demonstration, we'll use localStorage.
         return localStorage.getItem('isLoggedIn') === 'true';
     }
 
-    // Function to set login status (mock for demonstration)
     function setLoginStatus(status) {
         localStorage.setItem('isLoggedIn', status ? 'true' : 'false');
     }
@@ -37,6 +30,14 @@ document.addEventListener('DOMContentLoaded', function() {
         return localStorage.getItem('applicationSubmitted') === 'true';
     }
 
+    // Function to show hero and how-to-apply sections and hide the form
+    function showDefaultSections() {
+        heroSection.classList.remove('hidden');
+        howToApplySection.classList.remove('hidden');
+        applicationFormContainer.classList.add('hidden');
+        applyNowBtn.textContent = 'Apply Now'; // Reset button text
+    }
+
     // Initial state setup on page load
     function initializeAdoptNowPage() {
         if (getFormSubmittedStatus()) {
@@ -44,8 +45,20 @@ document.addEventListener('DOMContentLoaded', function() {
             heroSection.classList.add('hidden');
             howToApplySection.classList.add('hidden');
             applicationFormContainer.classList.remove('hidden');
+            // Disable form fields if it's already submitted and being viewed
+            form.querySelectorAll('input, select, textarea, button[type="submit"]').forEach(element => {
+                if (element.id !== 'confirmSubmission' && element.id !== 'cancelSubmission' && element.id !== 'applyNowBtn') {
+                    element.disabled = true;
+                }
+            });
+            if (formCloseButton) { // Hide the form close button if form is just for viewing
+                formCloseButton.classList.add('hidden');
+            }
         } else {
             applicationFormContainer.classList.add('hidden');
+            if (formCloseButton) {
+                formCloseButton.classList.remove('hidden'); // Ensure it's visible when not submitted
+            }
         }
     }
 
@@ -60,18 +73,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 window.location.href = 'SignIn.html';
             } else {
                 // If logged in, toggle form visibility
-                if (applicationFormContainer.classList.contains('hidden')) {
-                    // Show form, hide hero and how-to-apply sections
-                    heroSection.classList.add('hidden');
-                    howToApplySection.classList.add('hidden');
-                    applicationFormContainer.classList.remove('hidden');
-                    applyNowBtn.textContent = 'Hide Form'; // Change button text
+                if (getFormSubmittedStatus()) {
+                    viewSubmittedForm(); // If already submitted, use view logic
                 } else {
-                    // Hide form, show hero and how-to-apply sections
-                    heroSection.classList.remove('hidden');
-                    howToApplySection.classList.remove('hidden');
-                    applicationFormContainer.classList.add('hidden');
-                    applyNowBtn.textContent = 'Apply Now'; // Change button text back
+                    toggleFormVisibility(); // Otherwise, use toggle logic for filling form
                 }
             }
         });
@@ -85,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (form.checkValidity()) {
                 confirmationModal.style.display = 'flex';
             } else {
-                form.reportValidity();
+                form.reportValidity(); // Show native browser validation messages
             }
         });
 
@@ -93,23 +98,21 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!isFormSubmitting) {
                 isFormSubmitting = true;
                 confirmationModal.style.display = 'none';
-                // In a real application, you would submit the form data to a server here.
-                // For this example, we'll just simulate success.
+                // Simulate form submission success
                 console.log('Application submitted successfully!');
                 setFormSubmittedStatus(true); // Mark form as submitted
                 applyNowBtn.textContent = 'View Form'; // Change button text to "View Form"
-                applyNowBtn.removeEventListener('click', toggleFormVisibility); // Remove old listener
-                applyNowBtn.addEventListener('click', viewSubmittedForm); // Add new listener for viewing
-                // Optionally, disable form fields after submission for viewing purposes
+                
+                // Disable all form fields except the submission buttons in the modal and the apply/view button
                 form.querySelectorAll('input, select, textarea, button[type="submit"]').forEach(element => {
-                    if (element.id !== 'confirmSubmission' && element.id !== 'cancelSubmission') { // Don't disable modal buttons
+                    if (element.id !== 'confirmSubmission' && element.id !== 'cancelSubmission' && element.id !== 'applyNowBtn') {
                         element.disabled = true;
                     }
                 });
-                // Since we are not actually submitting the form to a new page,
-                // we simulate the effect of a submitted form by keeping it visible
-                // and changing the button. If the form were to actually submit and
-                // reload the page, the initializeAdoptNowPage() would handle the 'View Form' state.
+                if (formCloseButton) { // Hide the form close button after submission
+                    formCloseButton.classList.add('hidden');
+                }
+                isFormSubmitting = false; // Reset for future interactions if needed
             }
         });
 
@@ -118,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Application submission cancelled by user.');
         });
 
-        closeButton.addEventListener('click', function() {
+        closeModalButton.addEventListener('click', function() { // Used closeModalButton
             confirmationModal.style.display = 'none';
             console.log('Application submission cancelled by closing modal.');
         });
@@ -131,6 +134,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // New: Event listener for the form's close button
+    if (formCloseButton) {
+        formCloseButton.addEventListener('click', function() {
+            showDefaultSections();
+        });
+    }
+
     // Helper function for toggling form visibility (used when button is "Apply Now" or "Hide Form")
     function toggleFormVisibility() {
         if (applicationFormContainer.classList.contains('hidden')) {
@@ -138,11 +148,17 @@ document.addEventListener('DOMContentLoaded', function() {
             howToApplySection.classList.add('hidden');
             applicationFormContainer.classList.remove('hidden');
             applyNowBtn.textContent = 'Hide Form';
+            // Ensure form fields are enabled when displaying for editing
+            form.querySelectorAll('input, select, textarea, button[type="submit"]').forEach(element => {
+                if (element.id !== 'confirmSubmission' && element.id !== 'cancelSubmission' && element.id !== 'applyNowBtn') {
+                    element.disabled = false;
+                }
+            });
+            if (formCloseButton) {
+                formCloseButton.classList.remove('hidden');
+            }
         } else {
-            heroSection.classList.remove('hidden');
-            howToApplySection.classList.remove('hidden');
-            applicationFormContainer.classList.add('hidden');
-            applyNowBtn.textContent = 'Apply Now';
+            showDefaultSections();
         }
     }
 
@@ -153,14 +169,20 @@ document.addEventListener('DOMContentLoaded', function() {
             howToApplySection.classList.add('hidden');
             applicationFormContainer.classList.remove('hidden');
             applyNowBtn.textContent = 'Hide Form';
+            // Disable form fields when viewing
+            form.querySelectorAll('input, select, textarea, button[type="submit"]').forEach(element => {
+                if (element.id !== 'confirmSubmission' && element.id !== 'cancelSubmission' && element.id !== 'applyNowBtn') {
+                    element.disabled = true;
+                }
+            });
+            if (formCloseButton) {
+                formCloseButton.classList.add('hidden'); // Hide close button in view mode
+            }
         } else {
-            heroSection.classList.remove('hidden');
-            howToApplySection.classList.remove('hidden');
-            applicationFormContainer.classList.add('hidden');
+            showDefaultSections();
             applyNowBtn.textContent = 'View Form'; // Stays "View Form" when hidden after submission
         }
     }
-
 
     // Initial setup on page load
     initializeAdoptNowPage();
@@ -191,17 +213,20 @@ document.addEventListener('DOMContentLoaded', function() {
         if (isVisible) {
             sectionElement.classList.remove('hidden');
             sectionElement.querySelectorAll('input, select, textarea').forEach(input => {
-                if (sectionElement.id === 'spouseInformationSection' && input.id === 'spouseName') {
-                    input.required = true;
-                } else if (sectionElement.id === 'adultInformationSection' && input.closest('.adult-info-entry')) {
-                    if (!input.classList.contains('adult-employer-name') && !input.classList.contains('adult-work-contact-number') && !input.classList.contains('adult-company-address') && !input.classList.contains('adult-working-hours')) {
-                        if (input.type !== 'radio' || (input.type === 'radio' && input.id.includes('adultAllergicYes'))) {
-                             input.required = true;
-                        }
-                    }
-                } else if (sectionElement.id === 'petInformationSection' && input.closest('.pet-info-entry')) {
-                    if (input.required !== false) {
+                // Only make fields required if the form is NOT in "view submitted" mode
+                if (!getFormSubmittedStatus()) { 
+                    if (sectionElement.id === 'spouseInformationSection' && input.id === 'spouseName') {
                         input.required = true;
+                    } else if (sectionElement.id === 'adultInformationSection' && input.closest('.adult-info-entry')) {
+                        if (!input.classList.contains('adult-employer-name') && !input.classList.contains('adult-work-contact-number') && !input.classList.contains('adult-company-address') && !input.classList.contains('adult-working-hours')) {
+                            if (input.type !== 'radio' || (input.type === 'radio' && input.id.includes('adultAllergicYes'))) {
+                                 input.required = true;
+                            }
+                        }
+                    } else if (sectionElement.id === 'petInformationSection' && input.closest('.pet-info-entry')) {
+                        if (input.required !== false) {
+                            input.required = true;
+                        }
                     }
                 }
             });
