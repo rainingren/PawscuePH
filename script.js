@@ -207,49 +207,45 @@ document.addEventListener('DOMContentLoaded', function() {
     const spouseInformationSection = document.getElementById('spouseInformationSection');
 
     const otherAdultsYesRadio = document.getElementById('otherAdultsYes');
-    const otherAdultsNoRadio = document.getElementById('otherAdultsNo');
+    const otherAdultsNoRadio = document = document.getElementById('otherAdultsNo');
     const adultInformationSection = document.getElementById('adultInformationSection');
     const additionalAdultsContainer = document.getElementById('additionalAdultsContainer');
     const addAdultButton = document.getElementById('addAdultButton');
-    const adultButtonContainer = adultInformationSection.querySelector('.button-container');
-    let removeAdultButton = null;
+    const adultButtonContainer = adultInformationSection.querySelector('.button-container'); 
+    let removeAdultButton = null; 
 
     const ownedDogYesRadio = document.getElementById('ownedDogYes');
     const ownedDogNoRadio = document.getElementById('ownedDogNo');
     const petInformationSection = document.getElementById('petInformationSection');
     const additionalPetsContainer = document.getElementById('additionalPetsContainer');
     const addPetButton = document.getElementById('addPetButton');
-    const petButtonContainer = petInformationSection.querySelector('.button-container');
-    let removePetButton = null;
+    const petButtonContainer = petInformationSection.querySelector('.button-container'); 
+    let removePetButton = null; 
 
 
     function toggleSection(sectionElement, isVisible, manageDynamicFields = false) {
         if (isVisible) {
             sectionElement.classList.remove('hidden');
             sectionElement.querySelectorAll('input, select, textarea').forEach(input => {
-                if (!getFormSubmittedStatus()) {
-                    if (sectionElement.id === 'spouseInformationSection' && input.id === 'spouseName') {
+                if (sectionElement.id === 'spouseInformationSection' && input.id === 'spouseName') {
+                    input.required = true;
+                } else if (sectionElement.id === 'adultInformationSection' && input.closest('.adult-info-entry') && !input.classList.contains('adult-employer-name') && !input.classList.contains('adult-work-contact-number') && !input.classList.contains('adult-company-address') && !input.classList.contains('adult-working-hours')) {
+                    input.required = true;
+                } else if (sectionElement.id === 'petInformationSection' && input.closest('.pet-info-entry')) {
+                     if (input.required !== false) {
                         input.required = true;
-                    } else if (sectionElement.id === 'adultInformationSection' && input.closest('.adult-info-entry')) {
-                        if (!input.classList.contains('adult-employer-name') && !input.classList.contains('adult-work-contact-number') && !input.classList.contains('adult-company-address') && !input.classList.contains('adult-working-hours')) {
-                            if (input.type !== 'radio' || (input.type === 'radio' && input.id.includes('adultAllergicYes'))) {
-                                 input.required = true;
-                            }
-                        }
-                    } else if (sectionElement.id === 'petInformationSection' && input.closest('.pet-info-entry')) {
-                        if (input.required !== false) {
-                            input.required = true;
-                        }
-                    }
+                     }
                 }
             });
+
             if (manageDynamicFields && sectionElement.id === 'adultInformationSection') {
-                adultButtonContainer.style.display = 'flex';
+                adultButtonContainer.style.display = 'flex'; 
                 updateAdultButtonsVisibility();
             } else if (manageDynamicFields && sectionElement.id === 'petInformationSection') {
-                petButtonContainer.style.display = 'flex';
+                petButtonContainer.style.display = 'flex'; 
                 updatePetButtonsVisibility();
             }
+
         } else {
             sectionElement.classList.add('hidden');
             sectionElement.querySelectorAll('input, select, textarea').forEach(input => {
@@ -259,6 +255,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     input.checked = false;
                 }
             });
+
             if (manageDynamicFields && sectionElement.id === 'adultInformationSection') {
                 additionalAdultsContainer.innerHTML = '';
                 adultCount = 0;
@@ -266,11 +263,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     removeAdultButton.remove();
                     removeAdultButton = null;
                 }
-                adultButtonContainer.style.display = 'none';
+                adultButtonContainer.style.display = 'none'; 
             } else if (manageDynamicFields && sectionElement.id === 'petInformationSection') {
                 additionalPetsContainer.innerHTML = '';
                 petCount = 0;
-                if (removePetButton) {
+                if (removePetButton) { 
                     removePetButton.remove();
                     removePetButton = null;
                 }
@@ -279,7 +276,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Spouse Information Section
+
     spouseYesRadio.addEventListener('change', function() {
         toggleSection(spouseInformationSection, this.checked);
     });
@@ -288,59 +285,42 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     toggleSection(spouseInformationSection, spouseYesRadio.checked);
 
-    // Other Adults Information Section
-    otherAdultsYesRadio.addEventListener('change', function() {
-        toggleSection(adultInformationSection, this.checked, true);
-    });
-    otherAdultsNoRadio.addEventListener('change', function() {
-        toggleSection(adultInformationSection, !this.checked, true);
-    });
-    toggleSection(adultInformationSection, otherAdultsYesRadio.checked, true);
-
     let adultCount = 0;
 
+    function updateAdultFieldAttributes(element, index) {
+        element.querySelectorAll('[id]').forEach(input => {
+            const originalId = input.id;
+            const newId = originalId.replace(/_\d+$/, '') + '_' + index;
+            input.id = newId;
+        });
+        element.querySelectorAll('[for]').forEach(label => {
+            const originalFor = label.getAttribute('for');
+            const newFor = originalFor.replace(/_\d+$/, '') + '_' + index;
+            label.setAttribute('for', newFor);
+        });
+        element.querySelectorAll('[name]').forEach(input => {
+            const originalName = input.name;
+            const newName = originalName.replace(/_\d+$/, '') + '_' + index;
+            input.name = newName;
+        });
+        element.querySelectorAll('input').forEach(input => {
+            input.value = '';
+            if (!input.classList.contains('adult-employer-name') && !input.classList.contains('adult-work-contact-number') && !input.classList.contains('adult-company-address') && !input.classList.contains('adult-working-hours')) {
+                 input.required = true;
+            }
+        });
+    }
+
     function addAdultEntry() {
-        const adultInfoEntry = document.createElement('div');
-        adultInfoEntry.classList.add('adult-info-entry-dynamic');
-        adultInfoEntry.innerHTML = `
-            <div class="form-group full-width">
-                <label for="adultName_${adultCount + 1}">Adult's name<span class="required">*</span></label>
-                <input type="text" id="adultName_${adultCount + 1}" class="adult-name" placeholder="First Name MI. Last Name" required>
-            </div>
-            <div class="form-row">
-                <div class="form-group half-width">
-                    <label for="adultEmployerName_${adultCount + 1}">Employer's name</label>
-                    <input type="text" id="adultEmployerName_${adultCount + 1}" class="adult-employer-name" placeholder="First Name MI. Last Name">
-                </div>
-                <div class="form-group half-width">
-                    <label for="adultWorkContactNumber_${adultCount + 1}">Work Contact Number</label>
-                    <input type="text" id="adultWorkContactNumber_${adultCount + 1}" class="adult-work-contact-number" placeholder="Telephone/Cellular Phone Number">
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group large-width">
-                    <label for="adultCompanyAddress_${adultCount + 1}">Company Address</label>
-                    <input type="text" id="adultCompanyAddress_${adultCount + 1}" class="adult-company-address" placeholder="Street, Barangay/Subdivision, City/Municipality, Province">
-                </div>
-                <div class="form-group small-width">
-                    <label for="adultWorkingHours_${adultCount + 1}">Working Hours</label>
-                    <input type="text" id="adultWorkingHours_${adultCount + 1}" class="adult-working-hours" placeholder="Number of working hours">
-                </div>
-            </div>
-            <div class="form-group">
-                <label>Is this person allergic to animals?<span class="required">*</span></label>
-                <div class="radio-group">
-                    <input type="radio" id="adultAllergicYes_${adultCount + 1}" name="adultAllergic_${adultCount + 1}" value="Yes" required>
-                    <label for="adultAllergicYes_${adultCount + 1}">Yes</label>
-                    <input type="radio" id="adultAllergicNo_${adultCount + 1}" name="adultAllergic_${adultCount + 1}" value="No">
-                    <label for="adultAllergicNo_${adultCount + 1}">No</label>
-                </div>
-            </div>
-            <hr>
-        `;
-        additionalAdultsContainer.appendChild(adultInfoEntry);
         adultCount++;
-        updateAdultButtonsVisibility();
+        const templateAdultEntry = document.querySelector('.adult-info-entry').cloneNode(true);
+        templateAdultEntry.classList.remove('adult-info-entry');
+        templateAdultEntry.classList.add('adult-info-entry-dynamic');
+
+        updateAdultFieldAttributes(templateAdultEntry, adultCount);
+        additionalAdultsContainer.appendChild(templateAdultEntry);
+
+        updateAdultButtonsVisibility(); 
     }
 
     function updateAdultButtonsVisibility() {
@@ -348,93 +328,106 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!removeAdultButton) {
                 removeAdultButton = document.createElement('button');
                 removeAdultButton.type = 'button';
-                removeAdultButton.classList.add('modal-button', 'cancel-button', 'remove-button');
+                removeAdultButton.classList.add('remove-button');
                 removeAdultButton.innerHTML = '<i class="bi bi-dash-circle"></i>';
-                adultButtonContainer.appendChild(removeAdultButton);
+                adultButtonContainer.appendChild(removeAdultButton); 
                 removeAdultButton.addEventListener('click', removeLastAdultEntry);
             }
         } else {
-            if (removeAdultButton) {
+            if (removeAdultButton) { 
                 removeAdultButton.remove();
                 removeAdultButton = null;
             }
         }
     }
 
+    function removeLastAdultEntry() {
+        const dynamicAdults = additionalAdultsContainer.querySelectorAll('.adult-info-entry-dynamic');
+        if (dynamicAdults.length > 0) {
+            dynamicAdults[dynamicAdults.length - 1].remove(); 
+            adultCount--;
+            updateAdultButtonsVisibility(); 
+        }
+    }
+
+    otherAdultsYesRadio.addEventListener('change', function() {
+        toggleSection(adultInformationSection, this.checked, true);
+    });
+    otherAdultsNoRadio.addEventListener('change', function() {
+        toggleSection(adultInformationSection, !this.checked, true);
+    });
     addAdultButton.addEventListener('click', addAdultEntry);
+
+    toggleSection(adultInformationSection, otherAdultsYesRadio.checked, true);
 
     let petCount = 0;
 
+    function updatePetFieldAttributes(element, index) {
+        element.querySelectorAll('[id]').forEach(input => {
+            const originalId = input.id;
+            const newId = originalId.replace(/_\d+$/, '') + '_' + index;
+            input.id = newId;
+        });
+        element.querySelectorAll('[for]').forEach(label => {
+            const originalFor = label.getAttribute('for');
+            const newFor = originalFor.replace(/_\d+$/, '') + '_' + index;
+            label.setAttribute('for', newFor);
+        });
+        element.querySelectorAll('[name]').forEach(input => {
+            const originalName = input.name;
+            const newName = originalName.replace(/_\d+$/, '') + '_' + index;
+            input.name = newName;
+        });
+        element.querySelectorAll('input').forEach(input => {
+            input.value = '';
+            if (input.type === 'radio') {
+                input.checked = false;
+            }
+             if (input.required !== false) {
+                input.required = true;
+             }
+        });
+    }
+
     function addPetEntry() {
-        const petInfoEntry = document.createElement('div');
-        petInfoEntry.classList.add('pet-info-entry-dynamic');
-        petInfoEntry.innerHTML = `
-            <div class="form-row">
-            <div class="form-group third-width">
-              <label for="petBreed_${petCount + 1}">Breed<span class="required">*</span></label>
-              <input type="text" id="petBreed_${petCount + 1}" class="pet-breed" required>
-            </div>
-            <div class="form-group third-width">
-              <label for="petAge_${petCount + 1}">Age<span class="required">*</span></label>
-              <input type="number" id="petAge_${petCount + 1}" class="pet-age" min="0" required>
-            </div>
-            <div class="form-group third-width">
-              <label>Spay/Neuter?<span class="required">*</span></label>
-              <div class="radio-group">
-                <input type="radio" id="spay_${petCount + 1}" name="spayNeuter_${petCount + 1}" value="Spay" required>
-                <label for="spay_${petCount + 1}">Spay</label>
-                <input type="radio" id="neuter_${petCount + 1}" name="spayNeuter_${petCount + 1}" value="Neuter">
-                <label for="neuter_${petCount + 1}">Neuter</label>
-                <input type="radio" id="neither_${petCount + 1}" name="spayNeuter_${petCount + 1}" value="Neither">
-                <label for="neither_${petCount + 1}">No</label>
-              </div>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group half-width">
-              <label for="yearsOwned_${petCount + 1}">Years owned<span class="required">*</span></label>
-              <input type="number" id="yearsOwned_${petCount + 1}" class="pet-years-owned" min="0" required>
-            </div>
-            <div class="form-group half-width">
-              <label for="stillHavePet_${petCount + 1}">Do you still have this pet? If not, where is it?<span class="required">*</span></label>
-              <input type="text" id="stillHavePet_${petCount + 1}" class="pet-still-have" required>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label>Is it Vaccinated?<span class="required">*</span></label>
-            <div class="radio-group">
-              <input type="radio" id="vaccinatedYes_${petCount + 1}" name="vaccinated_${petCount + 1}" value="Yes" required>
-              <label for="vaccinatedYes_${petCount + 1}">Yes</label>
-              <input type="radio" id="vaccinatedNo_${petCount + 1}" name="vaccinated_${petCount + 1}" value="No">
-              <label for="vaccinatedNo_${petCount + 1}">No</label>
-            </div>
-          </div>
-            <hr>
-        `;
-        additionalPetsContainer.appendChild(petInfoEntry);
         petCount++;
+        const templatePetEntry = document.querySelector('.pet-info-entry').cloneNode(true);
+        templatePetEntry.classList.remove('pet-info-entry');
+        templatePetEntry.classList.add('pet-info-entry-dynamic');
+
+        updatePetFieldAttributes(templatePetEntry, petCount);
+        additionalPetsContainer.appendChild(templatePetEntry);
+
         updatePetButtonsVisibility();
     }
 
     function updatePetButtonsVisibility() {
         if (petCount > 0) {
-            if (!removePetButton) {
+            if (!removePetButton) { 
                 removePetButton = document.createElement('button');
                 removePetButton.type = 'button';
-                removePetButton.classList.add('modal-button', 'cancel-button', 'remove-button');
+                removePetButton.classList.add('remove-button');
                 removePetButton.innerHTML = '<i class="bi bi-dash-circle"></i>';
-                petButtonContainer.appendChild(removePetButton);
+                petButtonContainer.appendChild(removePetButton); 
                 removePetButton.addEventListener('click', removeLastPetEntry);
             }
         } else {
-            if (removePetButton) {
+            if (removePetButton) { 
                 removePetButton.remove();
                 removePetButton = null;
             }
         }
     }
+
+    function removeLastPetEntry() {
+        const dynamicPets = additionalPetsContainer.querySelectorAll('.pet-info-entry-dynamic');
+        if (dynamicPets.length > 0) {
+            dynamicPets[dynamicPets.length - 1].remove(); 
+            petCount--;
+            updatePetButtonsVisibility(); 
+        }
+    }
+
 
     ownedDogYesRadio.addEventListener('change', function() {
         toggleSection(petInformationSection, this.checked, true);

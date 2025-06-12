@@ -358,8 +358,15 @@
               <input type="number" id="yearsOwned_0" class="pet-years-owned" min="0" required>
             </div>
             <div class="form-group half-width">
-              <label for="stillHavePet_0">Do you still have this pet? If not, where is it?<span class="required">*</span></label>
-              <input type="text" id="stillHavePet_0" class="pet-still-have" required>
+              <label>Pet Status<span class="required">*</span></label>
+              <div class="radio-group">
+                <input type="radio" id="alive_0" name="petStatus_0" value="Alive" required>
+                <label for="alive_0">Alive</label>
+                <input type="radio" id="deceased_0" name="petStatus_0" value="Deceased">
+                <label for="deceased_0">Deceased</label>
+                <input type="radio" id="rehomed_0" name="petStatus_0" value="Rehomed">
+                <label for="rehomed_0">Rehomed</label>
+              </div>
             </div>
           </div>
 
