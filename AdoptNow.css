@@ -126,7 +126,7 @@ margin-left: auto;
 .hero-section {
   background-color: var(--light-color);
   text-align: center;
-  padding: 150px 20px 40px;
+  padding: 180px 20px 100px;
 }
 
 .hero-title {
@@ -171,7 +171,7 @@ margin-left: auto;
 
 .how-to-apply {
   background-color: var(--medium-color);
-  color: var(--dark-color);
+  color: #FFFFFF;
   padding: 30px 20px 50px;
   text-align: center;
   width: 100vw;           
@@ -194,11 +194,13 @@ margin-left: auto;
 
 .step {
   background-color: var(--dark-color);
-  padding: 20px;
+  padding: 30px;
   border-radius: var(--border-radius-m);
-  width: 250px;
-  max-width: 90%;
+  width: 320px;
+  max-width: 95%;
   text-align: center;
+  transition: transform 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 .step .icon {
@@ -227,8 +229,6 @@ margin-left: auto;
   font-size: var(--font-size-s);
   color: var(--white-color);
 }
-
-
 
 .container {
   background-color: var(--light-color);
