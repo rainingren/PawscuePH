@@ -117,24 +117,36 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        confirmSubmissionButton.addEventListener('click', function() {
-            if (!isFormSubmitting) {
-                isFormSubmitting = true;
-                confirmationModal.style.display = 'none';
-                console.log('Application submitted successfully!');
-                setFormSubmittedStatus(true);
-                applyNowBtn.textContent = 'View Form';
+        confirmSubmissionButton.addEventListener('click', async () => { // Add 'async' if sendAdopter is asynchronous
+            // 1. Collect form data using logic previously in name.js
+            const adopterData = collectAdopterFormData(); // Assuming collectAdopterFormData() is now accessible
 
-                form.querySelectorAll('input, select, textarea, button[type="submit"]').forEach(element => {
-                    if (element.id !== 'confirmSubmission' && element.id !== 'cancelSubmission' && element.id !== 'applyNowBtn') {
-                        element.disabled = true;
-                    }
-                });
-                if (formCloseButton) {
-                    formCloseButton.classList.add('hidden');
-                }
-                isFormSubmitting = false;
+            // 2. Send the data
+            try {
+                await sendAdopter(adopterData); // Assuming sendAdopter is now accessible and returns a Promise
+                alert('Application submitted successfully!');
+                setFormSubmittedStatus(true);
+                confirmationModal.style.display = 'none';
+                loadViewMode(); // This will show the viewFormContainer
+                // Ensure other sections are hidden after submission
+                applicationFormContainer.style.display = 'none';
+                heroSection.style.display = 'none';
+                howToApplySection.style.display = 'none';
+                // These two lines are redundant if loadViewMode handles it, but harmless
+                viewFormContainer.style.display = 'block';
+                editViewButtons.style.display = 'block';
+                applyNowBtn.style.display = 'none';
+            } catch (error) {
+                console.error("Error submitting application:", error);
+                alert("Failed to submit application. Please try again.");
+                // Optionally, handle error display or keep the modal open
             }
+        });
+
+        // Make sure your script.js still has the initial form submit listener to show the modal:
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            confirmationModal.style.display = 'flex'; // Show modal
         });
 
         cancelSubmissionButton.addEventListener('click', function() {
@@ -438,6 +450,78 @@ document.addEventListener('DOMContentLoaded', function() {
     addPetButton.addEventListener('click', addPetEntry);
 
     toggleSection(petInformationSection, ownedDogYesRadio.checked, true);
+
+    const viewFormContainer = document.getElementById('viewFormContainer');
+    const editButton = document.getElementById('editButton');
+    const updateButton = document.getElementById('updateButton');
+    const deleteInfoButton = document.getElementById('deleteInfoButton');
+
+    const updateConfirmationModal = document.getElementById('updateConfirmationModal');
+    const deleteWarningModal = document.getElementById('deleteWarningModal');
+
+    const confirmUpdateButton = document.getElementById('confirmUpdateButton');
+    const cancelUpdateButton = document.getElementById('cancelUpdateButton');
+
+    const confirmDeleteButton = document.getElementById('confirmDeleteButton');
+    const cancelDeleteButton = document.getElementById('cancelDeleteButton');
+
+    const closeModalButtons = document.querySelectorAll('.close-modal');
+
+    function loadViewMode() {
+        const formInputs = document.querySelectorAll('#viewFormContainer input, #viewFormContainer textarea, #viewFormContainer select');
+        formInputs.forEach(input => {
+            input.disabled = true;
+        });
+
+        updateButton.style.display = 'none';
+        deleteInfoButton.style.display = 'none';
+    }
+
+    editButton.addEventListener('click', () => {
+        const formInputs = document.querySelectorAll('#viewFormContainer input, #viewFormContainer textarea, #viewFormContainer select');
+        formInputs.forEach(input => {
+            input.disabled = false;
+        });
+
+        updateButton.style.display = 'block';
+        deleteInfoButton.style.display = 'block';
+    });
+
+    updateButton.addEventListener('click', () => {
+        updateConfirmationModal.style.display = 'flex';
+    });
+
+    confirmUpdateButton.addEventListener('click', () => {
+        alert('Changes saved successfully.');
+        updateConfirmationModal.style.display = 'none';
+        loadViewMode();
+    });
+
+    cancelUpdateButton.addEventListener('click', () => {
+        updateConfirmationModal.style.display = 'none';
+    });
+
+    deleteInfoButton.addEventListener('click', () => {
+        deleteWarningModal.style.display = 'flex';
+    });
+
+    confirmDeleteButton.addEventListener('click', () => {
+        alert('Information deleted successfully. Redirecting to application page.');
+        deleteWarningModal.style.display = 'none';
+        window.location.href = 'AdoptNow.html';
+    });
+
+    cancelDeleteButton.addEventListener('click', () => {
+        deleteWarningModal.style.display = 'none';
+    });
+
+    closeModalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            button.closest('.modal').style.display = 'none';
+        });
+    });
+
+    loadViewMode();
 
     document.querySelectorAll('.heart').forEach(heart => {
         heart.addEventListener('click', () => {

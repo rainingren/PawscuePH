@@ -392,6 +392,329 @@
     </form>
   </div>
 
+  <div id="viewFormContainer" class="hidden">
+    <fieldset class="section">
+          <legend>Applicant's Information</legend>
+          <div class="form-row">
+            <div class="form-group full-width">
+              <label for="adopterName">Name<span class="required">*</span></label>
+              <input type="text" id="adopterName" placeholder="Last Name, First Name, MI" required>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group half-width">
+              <label for="contactNumber">Contact Number<span class="required">*</span></label>
+              <input type="text" id="contactNumber" placeholder="Telephone/Cellular Phone Number" required>
+            </div>
+            <div class="form-group half-width">
+              <label for="emailAddress">Email Address<span class="required">*</span></label>
+              <input type="email" id="emailAddress" placeholder="Email address" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Are you?<span class="required">*</span></label>
+            <div class="radio-group">
+              <input type="radio" id="working" name="employmentStatus" value="working" required>
+              <label for="working">Working</label>
+              <input type="radio" id="retired" name="employmentStatus" value="retired">
+              <label for="retired">Retired</label>
+              <input type="radio" id="attendingSchool" name="employmentStatus" value="attendingSchool">
+              <label for="attendingSchool">Attending School</label>
+              <input type="radio" id="homemaker" name="employmentStatus" value="homemaker">
+              <label for="homemaker">Homemaker</label>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group half-width">
+              <label for="employerName">Employer's name</label>
+              <input type="text" id="employerName" placeholder="First Name MI. Last Name">
+            </div>
+            <div class="form-group half-width">
+              <label for="workContactNumber">Work Contact Number</label>
+              <input type="text" id="workContactNumber" placeholder="Telephone/Cellular Phone Number">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group large-width">
+              <label for="companyAddress">Company Address</label>
+              <input type="text" id="companyAddress" placeholder="Street, Barangay/Subdivision, City/Municipality, Province">
+            </div>
+            <div class="form-group small-width">
+              <label for="workingHours">Working Hours</label>
+              <input type="text" id="workingHours" placeholder="Number of working hours">
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="section">
+          <div class="form-group">
+            <label>Do you have a spouse?<span class="required">*</span></label>
+            <div class="radio-group">
+              <input type="radio" id="spouseYes" name="hasSpouse" value="Yes" required>
+              <label for="spouseYes">Yes</label>
+              <input type="radio" id="spouseNo" name="hasSpouse" value="No">
+              <label for="spouseNo">No</label>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset id="spouseInformationSection" class="section hidden">
+          <legend>Spouse Information</legend>
+          <div class="form-group full-width">
+            <label for="spouseName">Spouse name<span class="required">*</span></label>
+            <input type="text" id="spouseName" placeholder="First Name MI. Last Name">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group half-width">
+              <label for="spouseEmployerName">Employer's name</label>
+              <input type="text" id="spouseEmployerName" placeholder="First Name MI. Last Name">
+            </div>
+            <div class="form-group half-width">
+              <label for="spouseWorkContactNumber">Work Contact Number</label>
+              <input type="text" id="spouseWorkContactNumber" placeholder="Telephone/Cellular Phone Number">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group large-width">
+              <label for="spouseCompanyAddress">Company Address</label>
+              <input type="text" id="spouseCompanyAddress" placeholder="Street, Barangay/Subdivision, City/Municipality, Province">
+            </div>
+            <div class="form-group small-width">
+              <label for="spouseWorkingHours">Working Hours</label>
+              <input type="text" id="spouseWorkingHours" placeholder="Number of working hours">
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="section">
+          <legend>House Information</legend>
+          <div class="form-group full-width">
+              <label for="homeAddress">Home Address<span class="required">*</span></label>
+              <input type="text" id="homeAddress" placeholder="Street, Barangay/Subdivision" required>
+          </div>
+
+          <div class="form-row">
+              <div class="form-group third-width">
+                  <label for="city">City<span class="required">*</span></label>
+                  <input type="text" id="city" placeholder="- Input City Name -" required>
+              </div>
+              <div class="form-group third-width">
+                  <label for="state">State<span class="required">*</span></label>
+                  <input type="text" id="state" placeholder="- Input Province Name -" required>
+              </div>
+              <div class="form-group third-width">
+                <label for="zipcode">Zipcode<span class="required">*</span></label>
+                <input type="text" id="zipcode" placeholder="- Input Zipcode -" required>
+              </div>
+          </div>
+
+          <div class="form-row pets-screen-row">
+            <div class="form-group-screen narrow-width">
+              <label>Do you?<span class="required">*</span></label>
+              <div class="radio-group">
+                <input type="radio" id="doYouOwn" name="doYou" value="Own" required>
+                <label for="doYouOwn">Own</label>
+                <input type="radio" id="doYouRent" name="doYou" value="Rent">
+                <label for="doYouRent">Rent</label>
+              </div>
+            </div>
+            <div class="form-group landlord-width">
+              <label>Does your landlord/lease or co-op allow pets?<span class="required">*</span></label>
+              <div class="radio-group">
+                <input type="radio" id="landlordYes" name="landlordPets" value="ALLOWED" required>
+                <label for="landlordYes">Yes</label>
+                <input type="radio" id="landlordNo" name="landlordPets" value="NOT ALLOWED">
+                <label for="landlordNo">No</label>
+              </div>
+            </div>
+            <div class="form-group-screen screens-width">
+              <label>Do you have screens on your windows?<span class="required">*</span></label>
+              <div class="radio-group">
+                <input type="radio" id="screensYes" name="hasScreens" value="true" required>
+                <label for="screensYes">Yes</label>
+                <input type="radio" id="screensNo" name="hasScreens" value="false">
+                <label for="screensNo">No</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group half-width">
+              <label for="numChildren">How many children are at home<span class="required">*</span></label>
+              <input type="number" id="numChildren" min="0" required>
+            </div>
+            <div class="form-group half-width">
+              <label>Where will your be your pet kept primarily?<span class="required">*</span></label>
+              <div class="radio-group">
+                <input type="radio" id="petInside" name="petKept" value="Indoors" required>
+                <label for="petInside">Inside</label>
+                <input type="radio" id="petOutside" name="petKept" value="Outdoors">
+                <label for="petOutside">Outside</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group half-width">
+              <label for="maxHoursAlone">Maximum number of hours NDD will be left alone daily?<span class="required">*</span></label>
+              <input type="number" id="maxHoursAlone" min="0" required>
+            </div>
+            <div class="form-group half-width">
+              <label>Who will be caretaker for the pet?<span class="required">*</span></label>
+              <div class="radio-group">
+                <input type="radio" id="caretakerSelf" name="caretaker" value="Self" required>
+                <label for="caretakerSelf">Self</label>
+                <input type="radio" id="caretakerSpouse" name="caretaker" value="Spouse">
+                <label for="caretakerSpouse">Spouse</label>
+                <input type="radio" id="caretakerRoommate" name="caretaker" value="Roommate">
+                <label for="caretakerRoommate">Roommate</label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset class="section">
+          <div class="form-group">
+            <label>Are there any other adults living in the household?<span class="required">*</span></label>
+            <div class="radio-group">
+              <input type="radio" id="otherAdultsYes" name="otherAdults" value="Yes" required>
+              <label for="otherAdultsYes">Yes</label>
+              <input type="radio" id="otherAdultsNo" name="otherAdults" value="No">
+              <label for="otherAdultsNo">No</label>
+            </div>
+          </div>
+      </fieldset>
+
+      <fieldset id="adultInformationSection" class="section hidden">
+        <legend>Adult Information</legend>
+        <div class="adult-info-entry">
+          <div class="form-group full-width">
+            <label for="adultName_0">Name<span class="required">*</span></label>
+            <input type="text" id="adultName_0" class="adult-name" placeholder="First Name MI. Last Name">
+          </div>
+          <div class="form-row">
+            <div class="form-group half-width">
+              <label for="adultEmployerName_0">Employer's name</label>
+              <input type="text" id="adultEmployerName_0" class="adult-employer-name" placeholder="First Name MI. Last Name">
+            </div>
+            <div class="form-group half-width">
+              <label for="adultWorkContactNumber_0">Work Contact Number</label>
+              <input type="text" id="adultWorkContactNumber_0" class="adult-work-contact-number" placeholder="Telephone/Cellular Phone Number">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group large-width">
+              <label for="adultCompanyAddress_0">Company Address</label>
+              <input type="text" id="adultCompanyAddress_0" class="adult-company-address" placeholder="street, barangay/subdivision, city/municipality, province">
+            </div>
+            <div class="form-group small-width">
+              <label for="adultWorkingHours_0">Working Hours</label>
+              <input type="text" id="adultWorkingHours_0" class="adult-working-hours" placeholder="Number of working hours">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Are you allergic to pets?<span class="required">*</span></label>
+            <div class="radio-group">
+              <input type="radio" id="adultAllergicYes_0" name="adultAllergic_0" value="Yes" class="adult-allergic" required>
+              <label for="adultAllergicYes_0">Yes</label>
+              <input type="radio" id="adultAllergicNo_0" name="adultAllergic_0" value="No" class="adult-allergic">
+              <label for="adultAllergicNo_0">No</label>
+            </div>
+          </div>
+          </div>
+        <div id="additionalAdultsContainer"></div>
+
+        <div class="button-container">
+            <button type="button" id="addAdultButton" class="add-button">
+                <i class="bi bi-plus-circle"></i>
+            </button>
+        </div>
+      </fieldset>
+
+      <fieldset class="section">
+        <div class="form-group">
+          <label>Do you own or have you owned other dog?<span class="required">*</span></label>
+          <div class="radio-group">
+            <input type="radio" id="ownedDogYes" name="ownedDog" value="Yes" required>
+            <label for="ownedDogYes">Yes</label>
+            <input type="radio" id="ownedDogNo" name="ownedDog" value="No">
+            <label for="ownedDogNo">No</label>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset id="petInformationSection" class="section hidden">
+        <legend>Pet Information</legend>
+        <div class="pet-info-entry">
+          <div class="form-row">
+            <div class="form-group third-width">
+              <label for="petBreed_0">Breed<span class="required">*</span></label>
+              <input type="text" id="petBreed_0" class="pet-breed" required>
+            </div>
+            <div class="form-group third-width">
+              <label for="petAge_0">Age<span class="required">*</span></label>
+              <input type="number" id="petAge_0" class="pet-age" min="0" required>
+            </div>
+            <div class="form-group third-width">
+              <label>Spay/Neuter?<span class="required">*</span></label>
+              <div class="radio-group">
+                <input type="radio" id="spay_0" name="spayNeuter_0" value="Spay" required>
+                <label for="spay_0">Spay</label>
+                <input type="radio" id="neuter_0" name="spayNeuter_0" value="Neuter">
+                <label for="neuter_0">Neuter</label>
+                <input type="radio" id="neither_0" name="spayNeuter_0" value="Neither">
+                <label for="neither_0">No</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group half-width">
+              <label for="yearsOwned_0">Years owned<span class="required">*</span></label>
+              <input type="number" id="yearsOwned_0" class="pet-years-owned" min="0" required>
+            </div>
+            <div class="form-group half-width">
+              <label>Pet Status<span class="required">*</span></label>
+              <div class="radio-group">
+                <input type="radio" id="alive_0" name="petStatus_0" value="Alive" required>
+                <label for="alive_0">Alive</label>
+                <input type="radio" id="deceased_0" name="petStatus_0" value="Deceased">
+                <label for="deceased_0">Deceased</label>
+                <input type="radio" id="rehomed_0" name="petStatus_0" value="Rehomed">
+                <label for="rehomed_0">Rehomed</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Is it Vaccinated?<span class="required">*</span></label>
+            <div class="radio-group">
+              <input type="radio" id="vaccinatedYes_0" name="vaccinated_0" value="Yes" required>
+              <label for="vaccinatedYes_0">Yes</label>
+              <input type="radio" id="vaccinatedNo_0" name="vaccinated_0" value="No">
+              <label for="vaccinatedNo_0">No</label>
+            </div>
+          </div>
+        </div>
+        <div id="additionalPetsContainer"></div>
+        <div class="button-container">
+          <button type="button" id="addPetButton" class="add-button">
+            <i class="bi bi-plus-circle"></i>
+          </button>
+        </div>
+      </fieldset>
+    <button id="editButton" class="form-action-button">Edit</button>
+    <button id="updateButton" class="form-action-button hidden">Update</button>
+    <button id="deleteInfoButton" class="form-action-button hidden">Delete Information</button>
+  </div>
+
   <footer class="footer">
       <div class="footer-line top-line"></div>
 
@@ -446,6 +769,39 @@
         </div>
     </div>
   </div>
+
+  <div id="updateConfirmationModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <div class="modal-header">
+        <h2>Update Confirmation</h2>
+      </div>
+      <div class="modal-body">
+        <p>Do you want to save changes?</p>
+      </div>
+      <div class="modal-footer">
+        <button id="cancelUpdateButton" class="modal-button cancel-button">Cancel</button>
+        <button id="confirmUpdateButton" class="modal-button submit-button">Update</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="deleteWarningModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <div class="modal-header">
+        <h2>Warning</h2>
+      </div>
+      <div class="modal-body">
+        <p>All information will be deleted. Are you sure you want to continue?</p>
+      </div>
+      <div class="modal-footer">
+        <button id="cancelDeleteButton" class="modal-button cancel-button">Cancel</button>
+        <button id="confirmDeleteButton" class="modal-button submit-button">Delete</button>
+      </div>
+    </div>
+  </div>
+
 
 </body>
 </html>

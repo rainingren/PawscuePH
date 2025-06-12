@@ -471,6 +471,25 @@ button[type="submit"]:hover {
   background-color: var(--lightorange-color); 
 }
 
+.form-action-button {
+    background-color: var(--medium-color);
+    color: var(--white-color);
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--border-radius-s);
+    cursor: pointer;
+    margin: 10px 5px;
+    font-size: var(--font-size-n);
+    display: inline-block;
+}
+
+.form-action-button.hidden {
+    display: none;
+}
+
+.form-action-button:hover {
+    background-color: var(--dark-color);
+}
 
 .footer {
   background-color: var(--dark-color);

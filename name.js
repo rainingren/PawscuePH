@@ -237,78 +237,78 @@ function getAdopter(adopterId) {
     });
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-    const form = document.querySelector("form");
+// document.addEventListener("DOMContentLoaded", function() {
+//     const form = document.querySelector("form");
 
-    form.addEventListener("submit", function(event) {
-        event.preventDefault();
+//     form.addEventListener("submit", function(event) {
+//         event.preventDefault();
 
-        // Collect data from form fields
-        const adopterName = document.getElementById("adopterName").value.trim();
-        const contactNumber = document.getElementById("contactNumber").value;
-        const emailAddress = document.getElementById("emailAddress").value;
+//         // Collect data from form fields
+//         const adopterName = document.getElementById("adopterName").value.trim();
+//         const contactNumber = document.getElementById("contactNumber").value;
+//         const emailAddress = document.getElementById("emailAddress").value;
 
-        const adopterData = {
-            adopter: {
-                adopterId: null,
-                adopterName: adopterName,
-                contactNum: contactNumber,
-                emailAddress: emailAddress,
-                addressDetails: {
-                    adopterAddressId: null,
-                    zipcode: document.getElementById("zipcode").value,
-                    homeAddress: document.getElementById("homeAddress").value,
-                    city: document.getElementById("city").value,
-                    state: document.getElementById("state").value,
-                    housingStatus: (document.querySelector('input[name="housingStatus"]:checked') || {}).value || "",
-                    homePetPolicy: (document.querySelector('input[name="homePetPolicy"]:checked') || {}).value || "",
-                    WindowScreens: (document.querySelector('input[name="WindowScreens"]:checked') || {}).value || "",
-                    homeChildrenNum: parseInt((document.getElementById("numChildren") || {value: ""}).value, 10) || 0,
-                    petLivingArea: (document.querySelector('input[name="petKeepingArea"]:checked') || {}).value || ""
-                },
-                employmentStatus: (document.querySelector('input[name="employmentStatus"]:checked') || {}).value || "",
-                adultWorkingHours: parseInt(document.getElementById("adultWorkingHours").value, 10) || 0,
-                adultWorkContactNumber: document.getElementById("adultWorkContactNumber").value,
-                employerName: document.getElementById("employerName").value,
-                adultCompanyAddress: document.getElementById("adultCompanyAddress").value,
-                maxHoursAlone: parseInt(document.getElementById("maxHoursAlone").value, 10) || 0,
-                petCareTaker: (document.querySelector('input[name="petCareTaker"]:checked') || {}).value || "",
-                spouse: {
-                    adopterId: null,
-                    spouseCompanyAddress: (document.getElementById("spouseWorkAddress") || {value: ""}).value,
-                    spouseWorkingHours: parseInt((document.getElementById("spouseWorkingHrs") || {value: ""}).value, 10) || 0,
-                    spouseId: null,
-                    spouseName: document.getElementById("spouseName").value,
-                    spouseEmployerName: (document.getElementById("spouseEmployerName") || {value: ""}).value,
-                    spouseWorkContactNumber: (document.getElementById("spouseContactNum") || {value: ""}).value
-                }
-            },
-            adopterPets: [
-                {
-                    petid: null,
-                    petbreed: document.getElementById("petBreed").value,
-                    petage: parseInt((document.getElementById("petAge") || {value: ""}).value, 10) || 0,
-                    petspayneuterstatus: (document.querySelector('input[name="petSpayNeuterStatus"]:checked') || {}).value || "",
-                    petyrsowned: parseInt((document.getElementById("petYearsOwned") || {value: ""}).value, 10) || 0,
-                    petcurrentstatus: (document.querySelector('input[name="petCurrentStatus"]:checked') || {}).value || "",
-                    petvaccination: (document.getElementById("petVaccination") || {checked: false}).checked,
-                    adopterid: null
-                }
-            ],
-            householdAdults: [
-                {
-                    householdadultid: null,
-                    adultName: (document.getElementById("adultName") || {value: ""}).value,
-                    adultAllergy: (document.getElementById("adultAllergy") || {checked: false}).checked,
-                    adultWorkContactNum: (document.getElementById("adultWorkContactNum") || {value: ""}).value,
-                    adultEmployerName: (document.getElementById("adultEmployerName") || {value: ""}).value,
-                    adultCompanyAddress: (document.getElementById("adultCompanyAddress") || {value: ""}).value,
-                    adultWorkingHours: parseInt((document.getElementById("adultWorkingHrs") || {value: ""}).value, 10) || 0,
-                    adopterid: null
-                }
-            ]
-        };
+//         const adopterData = {
+//             adopter: {
+//                 adopterId: null,
+//                 adopterName: adopterName,
+//                 contactNum: contactNumber,
+//                 emailAddress: emailAddress,
+//                 addressDetails: {
+//                     adopterAddressId: null,
+//                     zipcode: document.getElementById("zipcode").value,
+//                     homeAddress: document.getElementById("homeAddress").value,
+//                     city: document.getElementById("city").value,
+//                     state: document.getElementById("state").value,
+//                     housingStatus: (document.querySelector('input[name="housingStatus"]:checked') || {}).value || "",
+//                     homePetPolicy: (document.querySelector('input[name="homePetPolicy"]:checked') || {}).value || "",
+//                     WindowScreens: (document.querySelector('input[name="WindowScreens"]:checked') || {}).value || "",
+//                     homeChildrenNum: parseInt((document.getElementById("numChildren") || {value: ""}).value, 10) || 0,
+//                     petLivingArea: (document.querySelector('input[name="petKeepingArea"]:checked') || {}).value || ""
+//                 },
+//                 employmentStatus: (document.querySelector('input[name="employmentStatus"]:checked') || {}).value || "",
+//                 adultWorkingHours: parseInt(document.getElementById("adultWorkingHours").value, 10) || 0,
+//                 adultWorkContactNumber: document.getElementById("adultWorkContactNumber").value,
+//                 employerName: document.getElementById("employerName").value,
+//                 adultCompanyAddress: document.getElementById("adultCompanyAddress").value,
+//                 maxHoursAlone: parseInt(document.getElementById("maxHoursAlone").value, 10) || 0,
+//                 petCareTaker: (document.querySelector('input[name="petCareTaker"]:checked') || {}).value || "",
+//                 spouse: {
+//                     adopterId: null,
+//                     spouseCompanyAddress: (document.getElementById("spouseWorkAddress") || {value: ""}).value,
+//                     spouseWorkingHours: parseInt((document.getElementById("spouseWorkingHrs") || {value: ""}).value, 10) || 0,
+//                     spouseId: null,
+//                     spouseName: document.getElementById("spouseName").value,
+//                     spouseEmployerName: (document.getElementById("spouseEmployerName") || {value: ""}).value,
+//                     spouseWorkContactNumber: (document.getElementById("spouseContactNum") || {value: ""}).value
+//                 }
+//             },
+//             adopterPets: [
+//                 {
+//                     petid: null,
+//                     petbreed: document.getElementById("petBreed").value,
+//                     petage: parseInt((document.getElementById("petAge") || {value: ""}).value, 10) || 0,
+//                     petspayneuterstatus: (document.querySelector('input[name="petSpayNeuterStatus"]:checked') || {}).value || "",
+//                     petyrsowned: parseInt((document.getElementById("petYearsOwned") || {value: ""}).value, 10) || 0,
+//                     petcurrentstatus: (document.querySelector('input[name="petCurrentStatus"]:checked') || {}).value || "",
+//                     petvaccination: (document.getElementById("petVaccination") || {checked: false}).checked,
+//                     adopterid: null
+//                 }
+//             ],
+//             householdAdults: [
+//                 {
+//                     householdadultid: null,
+//                     adultName: (document.getElementById("adultName") || {value: ""}).value,
+//                     adultAllergy: (document.getElementById("adultAllergy") || {checked: false}).checked,
+//                     adultWorkContactNum: (document.getElementById("adultWorkContactNum") || {value: ""}).value,
+//                     adultEmployerName: (document.getElementById("adultEmployerName") || {value: ""}).value,
+//                     adultCompanyAddress: (document.getElementById("adultCompanyAddress") || {value: ""}).value,
+//                     adultWorkingHours: parseInt((document.getElementById("adultWorkingHrs") || {value: ""}).value, 10) || 0,
+//                     adopterid: null
+//                 }
+//             ]
+//         };
         
-        sendAdopter(adopterData);
-    });
-});
+//         sendAdopter(adopterData);
+//     });
+// });
