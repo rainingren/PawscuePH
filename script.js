@@ -117,36 +117,25 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        confirmSubmissionButton.addEventListener('click', async () => { // Add 'async' if sendAdopter is asynchronous
-            // 1. Collect form data using logic previously in name.js
-            const adopterData = collectAdopterFormData(); // Assuming collectAdopterFormData() is now accessible
-
-            // 2. Send the data
-            try {
-                await sendAdopter(adopterData); // Assuming sendAdopter is now accessible and returns a Promise
-                alert('Application submitted successfully!');
-                setFormSubmittedStatus(true);
+        confirmSubmissionButton.addEventListener('click', function() {
+            if (!isFormSubmitting) {
+                isFormSubmitting = true;
                 confirmationModal.style.display = 'none';
-                loadViewMode(); // This will show the viewFormContainer
-                // Ensure other sections are hidden after submission
-                applicationFormContainer.style.display = 'none';
-                heroSection.style.display = 'none';
-                howToApplySection.style.display = 'none';
-                // These two lines are redundant if loadViewMode handles it, but harmless
-                viewFormContainer.style.display = 'block';
-                editViewButtons.style.display = 'block';
-                applyNowBtn.style.display = 'none';
-            } catch (error) {
-                console.error("Error submitting application:", error);
-                alert("Failed to submit application. Please try again.");
-                // Optionally, handle error display or keep the modal open
-            }
-        });
+                console.log('Application submitted successfully!');
+                setFormSubmittedStatus(true);
+                applyNowBtn.textContent = 'View Form';
 
-        // Make sure your script.js still has the initial form submit listener to show the modal:
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
-            confirmationModal.style.display = 'flex'; // Show modal
+                form.querySelectorAll('input, select, textarea, button[type="submit"]').forEach(element => {
+                    if (element.id !== 'confirmSubmission' && element.id !== 'cancelSubmission' && element.id !== 'applyNowBtn') {
+                        element.disabled = true;
+                    }
+                });
+                if (formCloseButton) {
+                    formCloseButton.classList.add('hidden');
+                }
+                isFormSubmitting = false;
+                window.location.href = 'AdoptNow.html'; // Redirect after submission
+            }
         });
 
         cancelSubmissionButton.addEventListener('click', function() {
