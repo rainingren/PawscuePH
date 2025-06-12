@@ -107,6 +107,10 @@ margin-left: auto;
     height: auto;
 }
 
+.hidden {
+    display: none;
+}
+
 .intro-page {
     width: 100%;
     background-color: var(--light-color);
@@ -325,8 +329,6 @@ margin-left: auto;
 .carousel-pagination .dot.active {
     background-color: var(--orange-color);
 }
-
-
 
 @media (max-width: 768px) {
     .section-title {
