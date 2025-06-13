@@ -16,11 +16,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const logoutContainer = document.getElementById('logoutContainer');
     const logoutBtn = document.getElementById('logoutBtn');
 
-    // New elements for edit/delete functionality
     const editSubmissionButton = document.getElementById('editSubmissionButton');
     const deleteSubmissionButton = document.getElementById('deleteSubmissionButton');
     const saveChangesButton = document.getElementById('saveChangesButton');
-    const submitApplicationButton = document.getElementById('submitApplicationButton'); // Assuming this is the main submit button's ID
+    const submitApplicationButton = document.getElementById('submitApplicationButton'); 
 
     const deleteWarningModal = document.getElementById('deleteWarningModal');
     const confirmDeleteButton = document.getElementById('confirmDeleteButton');
@@ -55,29 +54,28 @@ document.addEventListener('DOMContentLoaded', function() {
         howToApplySection.classList.remove('hidden');
         applicationFormContainer.classList.add('hidden');
         applyNowBtn.textContent = 'Apply Now';
-        // Ensure action buttons are hidden when form is not visible or in apply mode
         if (editSubmissionButton) editSubmissionButton.classList.add('hidden');
         if (deleteSubmissionButton) deleteSubmissionButton.classList.add('hidden');
         if (saveChangesButton) saveChangesButton.classList.add('hidden');
-        if (submitApplicationButton) submitApplicationButton.classList.remove('hidden'); // Show original submit
-        form.reset(); // Clear form fields when going back to default
+        if (submitApplicationButton) submitApplicationButton.classList.remove('hidden'); 
+        form.reset(); 
         form.querySelectorAll('input, select, textarea').forEach(element => {
-            element.disabled = false; // Enable fields for new application
+            element.disabled = false; 
         });
     }
 
     function initializeAdoptNowPage() {
         if (getFormSubmittedStatus()) {
             applyNowBtn.textContent = 'View Form';
-            heroSection.classList.remove('hidden'); // Keep hero/how-to-apply visible initially
+            heroSection.classList.remove('hidden'); 
             howToApplySection.classList.remove('hidden');
-            applicationFormContainer.classList.add('hidden'); // Form remains hidden initially
+            applicationFormContainer.classList.add('hidden'); 
             if (formCloseButton) {
                 formCloseButton.classList.add('hidden');
             }
         } else {
             applicationFormContainer.classList.add('hidden');
-            heroSection.classList.remove('hidden'); // Keep hero/how-to-apply visible initially
+            heroSection.classList.remove('hidden'); 
             howToApplySection.classList.remove('hidden');
             if (formCloseButton) {
                 formCloseButton.classList.remove('hidden');
@@ -98,11 +96,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Function to collect all form data
     function collectFormData() {
         const data = {};
         form.querySelectorAll('input, select, textarea').forEach(element => {
-            if (element.id) { // Only collect if element has an ID
+            if (element.id) { 
                 if (element.type === 'radio') {
                     if (element.checked) {
                         data[element.name] = element.value;
@@ -117,17 +114,15 @@ document.addEventListener('DOMContentLoaded', function() {
         return data;
     }
 
-    // Function to fill form with data
     function fillFormWithData(data) {
         if (!data) return;
         form.querySelectorAll('input, select, textarea').forEach(element => {
             if (element.id && data[element.id] !== undefined) {
                 if (element.type === 'radio') {
-                    // Check if the element's name exists in data and its value matches
                     if (data[element.name] !== undefined && element.value === data[element.name]) {
                         element.checked = true;
                     } else {
-                        element.checked = false; // Uncheck other radios in the same group
+                        element.checked = false; 
                     }
                 } else if (element.type === 'checkbox') {
                     element.checked = data[element.id];
@@ -138,22 +133,18 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Function to save application data to localStorage
     function saveApplicationData(data) {
         localStorage.setItem(applicationDataKey, JSON.stringify(data));
         console.log('Application data saved:', data);
     }
 
-    // Function to load application data from localStorage
     function loadApplicationData() {
         const data = localStorage.getItem(applicationDataKey);
         return data ? JSON.parse(data) : null;
     }
 
-    // Function to toggle form edit mode
     function toggleEditMode(enable) {
         form.querySelectorAll('input, select, textarea').forEach(element => {
-            // Only enable/disable elements that are part of the form data, not control buttons
             if (element.id !== 'confirmSubmission' && element.id !== 'cancelSubmission' &&
                 element.id !== 'applyNowBtn' && element.id !== 'editSubmissionButton' &&
                 element.id !== 'deleteSubmissionButton' && element.id !== 'saveChangesButton' &&
@@ -166,12 +157,11 @@ document.addEventListener('DOMContentLoaded', function() {
             if (editSubmissionButton) editSubmissionButton.classList.add('hidden');
             if (deleteSubmissionButton) deleteSubmissionButton.classList.add('hidden');
             if (saveChangesButton) saveChangesButton.classList.remove('hidden');
-            if (formCloseButton) formCloseButton.classList.remove('hidden'); // Allow closing form during edit
-        } else { // Exiting edit mode (e.g., after saving)
+            if (formCloseButton) formCloseButton.classList.remove('hidden'); 
+        } else {
             if (editSubmissionButton) editSubmissionButton.classList.remove('hidden');
             if (deleteSubmissionButton) deleteSubmissionButton.classList.remove('hidden');
             if (saveChangesButton) saveChangesButton.classList.add('hidden');
-            // Re-disable fields after saving/exiting edit mode to return to view state
             form.querySelectorAll('input, select, textarea').forEach(element => {
                 if (element.id !== 'confirmSubmission' && element.id !== 'cancelSubmission' &&
                     element.id !== 'applyNowBtn' && element.id !== 'editSubmissionButton' &&
@@ -180,47 +170,41 @@ document.addEventListener('DOMContentLoaded', function() {
                     element.disabled = true;
                 }
             });
-            if (formCloseButton) formCloseButton.classList.add('hidden'); // Hide close button in view mode
+            if (formCloseButton) formCloseButton.classList.add('hidden'); 
         }
     }
 
-    // Function to save changes made during edit mode
     function saveChangesToAppData() {
         const updatedData = collectFormData();
         saveApplicationData(updatedData);
-        toggleEditMode(false); // Go back to view mode after saving
+        toggleEditMode(false); 
     }
 
-    // Modified viewSubmittedForm to show populated, disabled form with Edit/Delete buttons
     function viewSubmittedForm() {
         if (applicationFormContainer.classList.contains('hidden')) {
             heroSection.classList.add('hidden');
             howToApplySection.classList.add('hidden');
             applicationFormContainer.classList.remove('hidden');
-            applyNowBtn.textContent = 'Hide Form'; // When viewing, button changes to 'Hide Form'
+            applyNowBtn.textContent = 'Hide Form'; 
 
             const savedData = loadApplicationData();
-            fillFormWithData(savedData); // Fill the form with saved data
+            fillFormWithData(savedData); 
 
-            // Disable all form fields for viewing
             form.querySelectorAll('input, select, textarea').forEach(element => {
                 element.disabled = true;
             });
 
-            // Show Edit and Delete buttons, hide Submit and Save Changes buttons
             if (editSubmissionButton) editSubmissionButton.classList.remove('hidden');
             if (deleteSubmissionButton) deleteSubmissionButton.classList.remove('hidden');
             if (submitApplicationButton) submitApplicationButton.classList.add('hidden');
             if (saveChangesButton) saveChangesButton.classList.add('hidden');
 
             if (formCloseButton) {
-                formCloseButton.classList.add('hidden'); // Hide form close button in view mode
+                formCloseButton.classList.add('hidden'); 
             }
         } else {
-            // If already open (and is in view mode), hide it and go back to default sections
             showDefaultSections();
-            applyNowBtn.textContent = 'View Form'; // Reset button text when hidden
-            // Ensure edit/delete buttons are hidden when form is hidden
+            applyNowBtn.textContent = 'View Form'; 
             if (editSubmissionButton) editSubmissionButton.classList.add('hidden');
             if (deleteSubmissionButton) deleteSubmissionButton.classList.add('hidden');
             if (submitApplicationButton) submitApplicationButton.classList.remove('hidden'); // Show submit button
@@ -228,28 +212,25 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Existing function, slightly modified to ensure correct button states
     function toggleFormVisibility() {
-        // This function is for "Apply Now" state, not "View Form"
         if (applicationFormContainer.classList.contains('hidden')) {
             heroSection.classList.add('hidden');
             howToApplySection.classList.add('hidden');
             applicationFormContainer.classList.remove('hidden');
             applyNowBtn.textContent = 'Hide Form';
             form.querySelectorAll('input, select, textarea').forEach(element => {
-                element.disabled = false; // Enable fields for new application
+                element.disabled = false; 
             });
             if (formCloseButton) {
                 formCloseButton.classList.remove('hidden');
             }
-            // Hide edit/delete/save buttons, show submit
             if (editSubmissionButton) editSubmissionButton.classList.add('hidden');
             if (deleteSubmissionButton) deleteSubmissionButton.classList.add('hidden');
             if (saveChangesButton) saveChangesButton.classList.add('hidden');
             if (submitApplicationButton) submitApplicationButton.classList.remove('hidden');
-            form.reset(); // Clear form for new application
+            form.reset(); 
         } else {
-            showDefaultSections(); // Hide form, show hero/how-to-apply
+            showDefaultSections(); 
         }
     }
 
@@ -263,9 +244,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 window.location.href = 'SignIn.html';
             } else {
                 if (getFormSubmittedStatus()) {
-                    viewSubmittedForm(); // Call viewSubmittedForm for already submitted applications
+                    viewSubmittedForm(); 
                 } else {
-                    toggleFormVisibility(); // Call toggleFormVisibility for new applications
+                    toggleFormVisibility(); 
                 }
             }
         });
@@ -276,7 +257,7 @@ document.addEventListener('DOMContentLoaded', function() {
             event.preventDefault();
             setLoginStatus(false); 
             localStorage.removeItem('applicationSubmitted'); 
-            localStorage.removeItem(applicationDataKey); // Clear saved application data on logout
+            localStorage.removeItem(applicationDataKey); 
             console.log('User logged out. Application data cleared.');
             window.location.href = 'HomePage.html'; 
         });
@@ -301,12 +282,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 setFormSubmittedStatus(true);
                 applyNowBtn.textContent = 'View Form';
 
-                const submittedData = collectFormData(); // Collect current form data
-                saveApplicationData(submittedData); // Save to localStorage
-
-                // Removed form disabling here as it will be handled by viewSubmittedForm on next load
+                const submittedData = collectFormData(); 
+                saveApplicationData(submittedData); 
+                
                 isFormSubmitting = false;
-                window.location.href = 'AdoptNow.html'; // Redirect after submission
+                window.location.href = 'AdoptNow.html'; 
             }
         });
 
@@ -334,17 +314,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Event listeners for new buttons
     if (editSubmissionButton) {
         editSubmissionButton.addEventListener('click', function() {
-            toggleEditMode(true); // Enable edit mode
+            toggleEditMode(true); 
         });
     }
 
     if (saveChangesButton) {
         saveChangesButton.addEventListener('click', function() {
             if(updateConfirmationModal) {
-                updateConfirmationModal.style.display = 'flex'; // Show confirmation for save
+                updateConfirmationModal.style.display = 'flex';
             }
         });
     }
@@ -363,19 +342,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (deleteSubmissionButton) {
         deleteSubmissionButton.addEventListener('click', function() {
-            if (deleteWarningModal) deleteWarningModal.style.display = 'flex'; // Show delete confirmation
+            if (deleteWarningModal) deleteWarningModal.style.display = 'flex'; 
         });
     }
 
     if (confirmDeleteButton) {
         confirmDeleteButton.addEventListener('click', function() {
-            localStorage.removeItem(applicationDataKey); // Clear saved data
-            setFormSubmittedStatus(false); // Reset submission status
+            localStorage.removeItem(applicationDataKey); 
+            setFormSubmittedStatus(false); 
             console.log('Application data deleted successfully!');
             deleteWarningModal.style.display = 'none';
-            form.reset(); // Clear form fields
-            showDefaultSections(); // Go back to initial "Apply Now" state
-            applyNowBtn.textContent = 'Apply Now'; // Ensure button text is "Apply Now"
+            form.reset(); 
+            showDefaultSections(); 
+            applyNowBtn.textContent = 'Apply Now'; 
         });
     }
     if (cancelDeleteButton) {
@@ -384,7 +363,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Initial load of the page, ensuring correct form state and navigation visibility
     initializeAdoptNowPage(); 
 
     const spouseYesRadio = document.getElementById('spouseYes');
@@ -397,8 +375,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const additionalAdultsContainer = document.getElementById('additionalAdultsContainer');
     const addAdultButton = document.getElementById('addAdultButton');
     const adultButtonContainer = adultInformationSection ? adultInformationSection.querySelector('.button-container') : null;
-    let adultCount = 0; // Initialize adult count
-    // Removed direct removal of removeAdultButton from global scope, will handle dynamically
+    let adultCount = 0; 
     
     const ownedDogYesRadio = document.getElementById('ownedDogYes');
     const ownedDogNoRadio = document.getElementById('ownedDogNo');
@@ -406,9 +383,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const additionalPetsContainer = document.getElementById('additionalPetsContainer');
     const addPetButton = document.getElementById('addPetButton');
     const petButtonContainer = petInformationSection ? petInformationSection.querySelector('.button-container') : null;
-    let petCount = 0; // Initialize pet count
-    // Removed direct removal of removePetButton from global scope, will handle dynamically
-
+    let petCount = 0; 
 
     function toggleSection(sectionElement, isVisible, manageDynamicFields = false) {
         if (!sectionElement) return; // Add null check
@@ -445,12 +420,10 @@ document.addEventListener('DOMContentLoaded', function() {
             if (manageDynamicFields && sectionElement.id === 'adultInformationSection') {
                 additionalAdultsContainer.innerHTML = '';
                 adultCount = 0;
-                // No direct removeAdultButton removal here, handled by dynamic element removal
                 if (adultButtonContainer) adultButtonContainer.style.display = 'none';
             } else if (manageDynamicFields && sectionElement.id === 'petInformationSection') {
                 additionalPetsContainer.innerHTML = '';
                 petCount = 0;
-                // No direct removePetButton removal here, handled by dynamic element removal
                 if (petButtonContainer) petButtonContainer.style.display = 'none';
             }
         }
@@ -632,4 +605,44 @@ document.addEventListener('DOMContentLoaded', function() {
             icon.classList.toggle('fa-solid');
         });
     });
+
+    function setAdultWorkingFieldsEnabled(adultEntry, enabled) {
+        const employer = adultEntry.querySelector('.adult-employer-name');
+        const contact = adultEntry.querySelector('.adult-work-contact-number');
+        const address = adultEntry.querySelector('.adult-company-address');
+        if (employer) employer.disabled = !enabled;
+        if (contact) contact.disabled = !enabled;
+        if (address) address.disabled = !enabled;
+    }
+
+    function attachAdultWorkingListeners(adultEntry) {
+        const yesRadio = adultEntry.querySelector('.adult-working[id^="adultWorkingYes"]');
+        const noRadio = adultEntry.querySelector('.adult-working[id^="adultWorkingNo"]');
+        if (yesRadio) {
+            yesRadio.addEventListener('change', function() {
+                setAdultWorkingFieldsEnabled(adultEntry, true);
+            });
+        }
+        if (noRadio) {
+            noRadio.addEventListener('change', function() {
+                setAdultWorkingFieldsEnabled(adultEntry, false);
+            });
+        }
+    }
+
+    const mainAdultEntry = document.querySelector('.adult-info-entry');
+    if (mainAdultEntry) {
+        attachAdultWorkingListeners(mainAdultEntry);
+    }
+
+    if (addAdultButton) {
+        addAdultButton.addEventListener('click', () => {
+            setTimeout(() => {
+                const newAdultEntry = additionalAdultsContainer.lastElementChild;
+                if (newAdultEntry) {
+                    attachAdultWorkingListeners(newAdultEntry);
+                }
+            }, 0);
+        });
+    }
 });

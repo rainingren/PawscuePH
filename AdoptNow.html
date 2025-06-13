@@ -278,22 +278,27 @@
           </div>
           <div class="form-row">
             <div class="form-group half-width">
-              <label for="adultEmployerName_0">Employer's name</label>
+              <label for="adultEmployerName_0">Employer's name<span class="required">*</span></label>
               <input type="text" id="adultEmployerName_0" class="adult-employer-name" placeholder="First Name MI. Last Name">
             </div>
             <div class="form-group half-width">
-              <label for="adultWorkContactNumber_0">Work Contact Number</label>
+              <label for="adultWorkContactNumber_0">Work Contact Number<span class="required">*</span></label>
               <input type="text" id="adultWorkContactNumber_0" class="adult-work-contact-number" placeholder="Telephone/Cellular Phone Number">
             </div>
           </div>
           <div class="form-row">
             <div class="form-group large-width">
-              <label for="adultCompanyAddress_0">Company Address</label>
+              <label for="adultCompanyAddress_0">Company Address<span class="required">*</span></label>
               <input type="text" id="adultCompanyAddress_0" class="adult-company-address" placeholder="street, barangay/subdivision, city/municipality, province">
             </div>
             <div class="form-group small-width">
-              <label for="adultWorkingHours_0">Working Hours</label>
-              <input type="text" id="adultWorkingHours_0" class="adult-working-hours" placeholder="Number of working hours">
+              <label>Working<span class="required">*</span></label>
+              <div class="radio-group">
+                <input type="radio" id="adultWorkingYes_0" name="adultWorking_0" value=true class="adult-working" required>
+                <label for="adultWorkingYes_0">Yes</label>
+                <input type="radio" id="adultWorkingNo_0" name="adultWorking_0" value=false class="adult-working">
+                <label for="adultWorkingNo_0">No</label>
+              </div>
             </div>
           </div>
 
@@ -348,7 +353,7 @@
                 <input type="radio" id="neuter_0" name="spayNeuter_0" value="Neutered">
                 <label for="neuter_0">Neuter</label>
                 <input type="radio" id="neither_0" name="spayNeuter_0" value="Neither">
-                <label for="neither_0">No</label>
+                <label for="neither_0">None</label>
               </div>
             </div>
           </div>
