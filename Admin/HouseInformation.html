@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Information</title>
+    <link rel="stylesheet" href="Admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="nav-logo">
+            <img src="logo-pawscue.png" class="logo-img" alt="Logo" />
+        </div>
+
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="Admin.html" class="nav-link"><i class="fas fa-chart-pie nav-icon"></i><span>Dashboard</span></a></li>
+            <li class="nav-item"><a href="PetAdopter.html" class="nav-link"><i class="fas fa-user nav-icon"></i><span>Pet Adopter</span></a></li>
+            <li class="nav-item"><a href="HouseInformation.html" class="nav-link active"><i class="fas fa-home nav-icon"></i><span>House Information</span></a></li>
+            <li class="nav-item"><a href="SpouseInformation.html" class="nav-link"><i class="fas fa-user-friends nav-icon"></i><span>Spouse Information</span></a></li>
+            <li class="nav-item"><a href="HouseholdInformation.html" class="nav-link"><i class="fas fa-users nav-icon"></i><span>Household Information</span></a></li>
+            <li class="nav-item"><a href="AdopterPetInformation.html" class="nav-link"><i class="fas fa-paw nav-icon"></i><span>Adopter Pets Information</span></a></li>
+            <li class="nav-item"><a href="ApplicationStatus.html" class="nav-link"><i class="fas fa-clipboard-list nav-icon"></i><span>Application Status</span></a></li>
+            <li class="nav-item"><a href="AdminProfile.html" class="nav-link"><i class="fas fa-user-cog nav-icon"></i><span>Admin Profile</span></a></li>
+        </ul>
+
+        <button class="logout-btn">Log out</button>
+    </div>
+
+    <div class="main-content">
+        <div class="dashboard-header">
+            <h1 class="dashboard-title">House Information</h1>
+
+            <div class="controls">
+                <label for="itemsPerPage">Show:</label>
+                <select id="itemsPerPage" class="itemsPerPage">
+                    <option value="10" selected>10</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                </select>
+
+                <div class="control-group">
+                    <button class="control-btn sort-btn">Sort</button>
+                </div>
+
+                <div class="search-filter">
+                    <div class="search-container">
+                        <input type="text" class="search-box" placeholder="Search house info">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Adopter Address ID</th>
+                            <th>Zip Code</th>
+                            <th>Home Address</th>
+                            <th>City</th>
+                            <th>State</th>
+                            <th>Housing Status</th>
+                            <th>Home Pet Policy</th>
+                            <th>Window Screens</th>
+                            <th>Home Children Number</th>
+                            <th>Pet Living Area</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Dynamic rows will go here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="pagination">
+                <span class="pagination-text">1 - 6 of 6</span>
+                <div class="pagination-controls">
+                    <button class="pagination-btn"><i class="fas fa-chevron-left"></i></button>
+                    <button class="pagination-btn active"><i class="fas fa-chevron-up"></i></button>
+                    <button class="pagination-btn"><i class="fas fa-chevron-down"></i></button>
+                    <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filter Modal -->
+    <div id="filterModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="closeFilterBtn">&times;</span>
+            <h2>Filter House Info</h2>
+            <form id="filterForm">
+                <div class="filter-group">
+                    <label for="city">City:</label>
+                    <input type="text" id="city" name="city">
+                </div>
+                <div class="filter-group">
+                    <label for="state">State:</label>
+                    <input type="text" id="state" name="state">
+                </div>
+                <div class="filter-group">
+                    <label for="housingStatus">Housing Status:</label>
+                    <select id="housingStatus" name="housingStatus">
+                        <option value="">Select</option>
+                        <option value="Own">Own</option>
+                        <option value="Rent">Rent</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="petPolicy">Pet Policy:</label>
+                    <select id="petPolicy" name="petPolicy">
+                        <option value="">Select</option>
+                        <option value="Allowed">Allowed</option>
+                        <option value="Not Allowed">Not Allowed</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Window Screens:</label>
+                    <div class="radio-group">
+                        <input type="radio" id="screenYes" name="windowScreens" value="Yes">
+                        <label for="screenYes">Yes</label>
+                        <input type="radio" id="screenNo" name="windowScreens" value="No">
+                        <label for="screenNo">No</label>
+                    </div>
+                </div>
+                <div class="filter-actions">
+                    <button type="button" class="action-btn apply-btn" id="applyFilterBtn">Apply</button>
+                    <button type="button" class="action-btn clear-btn" id="clearFilterBtn">Clear</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="Admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Adopter Pet Information</title>
+  <link rel="stylesheet" href="Admin.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+  <div class="sidebar">
+    <div class="nav-logo">
+      <img src="logo-pawscue.png" class="logo-img" alt="Logo" />
+    </div>
+
+    <ul class="nav-menu">
+      <li class="nav-item"><a href="Admin.html" class="nav-link"><i class="fas fa-chart-pie nav-icon"></i><span>Dashboard</span></a></li>
+      <li class="nav-item"><a href="PetAdopter.html" class="nav-link"><i class="fas fa-user nav-icon"></i><span>Pet Adopter</span></a></li>
+      <li class="nav-item"><a href="HouseInformation.html" class="nav-link"><i class="fas fa-home nav-icon"></i><span>House Information</span></a></li>
+      <li class="nav-item"><a href="SpouseInformation.html" class="nav-link"><i class="fas fa-user-friends nav-icon"></i><span>Spouse Information</span></a></li>
+      <li class="nav-item"><a href="HouseholdInformation.html" class="nav-link"><i class="fas fa-users nav-icon"></i><span>Household Information</span></a></li>
+      <li class="nav-item"><a href="AdopterPetInformation.html" class="nav-link active"><i class="fas fa-paw nav-icon"></i><span>Adopter Pets Information</span></a></li>
+      <li class="nav-item"><a href="ApplicationStatus.html" class="nav-link"><i class="fas fa-clipboard-list nav-icon"></i><span>Application Status</span></a></li>
+      <li class="nav-item"><a href="AdminProfile.html" class="nav-link"><i class="fas fa-user-cog nav-icon"></i><span>Admin Profile</span></a></li>
+    </ul>
+
+    <button class="logout-btn">Log out</button>
+  </div>
+
+  <div class="main-content">
+    <div class="dashboard-header">
+      <h1 class="dashboard-title">Adopter Pet Information</h1>
+
+      <div class="controls">
+        <label for="itemsPerPage">Show:</label>
+        <select id="itemsPerPage" class="itemsPerPage">
+          <option value="10" selected>10</option>
+          <option value="20">20</option>
+          <option value="50">50</option>
+        </select>
+
+        <div class="control-group">
+          <button class="control-btn sort-btn">Sort</button>
+        </div>
+
+        <div class="search-filter">
+          <button class="filter-btn" id="openFilterBtn">Filter</button>
+          <div class="search-container">
+            <input type="text" class="search-box" placeholder="Search household info" />
+            <i class="fas fa-search search-icon"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section">
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Pet ID</th>
+              <th>Pet Breed</th>
+              <th>Pet Age</th>
+              <th>Surgical Sterilization</th>
+              <th>Years Owned</th>
+              <th>Pet Status</th>
+              <th>Pet Vaccination</th>
+              <th>Adopter ID</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Dynamic data rows go here -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pagination">
+        <span class="pagination-text">1 - 6 of 6</span>
+        <div class="pagination-controls">
+          <button class="pagination-btn"><i class="fas fa-chevron-left"></i></button>
+          <button class="pagination-btn active"><i class="fas fa-chevron-up"></i></button>
+          <button class="pagination-btn"><i class="fas fa-chevron-down"></i></button>
+          <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter Modal -->
+  <div id="filterModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button" id="closeFilterBtn">&times;</span>
+      <h2>Filter Household Info</h2>
+      <form id="filterForm">
+        <div class="filter-group">
+          <label for="adultName">Adult Name:</label>
+          <input type="text" id="adultName" name="adultName" />
+        </div>
+        <div class="filter-group">
+          <label for="employer">Employer:</label>
+          <input type="text" id="employer" name="employer" />
+        </div>
+        <div class="filter-group checkbox-group">
+          <input type="checkbox" id="hasAllergies" name="hasAllergies" value="Yes" />
+          <label for="hasAllergies">Has Allergies</label>
+        </div>
+        <div class="filter-group">
+          <label for="petCaretaker">Pet Caretaker:</label>
+          <select id="petCaretaker" name="petCaretaker">
+            <option value="">Select</option>
+            <option value="Self">Self</option>
+            <option value="Spouse">Spouse</option>
+            <option value="Roommate">Roommate</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="children">Children in Home:</label>
+          <input type="number" id="children" name="children" min="0" />
+        </div>
+        <div class="filter-group">
+          <label for="housingStatus">Housing Status:</label>
+          <select id="housingStatus" name="housingStatus">
+            <option value="">Select</option>
+            <option value="Own">Own</option>
+            <option value="Rent">Rent</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Window Screens:</label>
+          <div class="radio-group">
+            <input type="radio" id="screensYes" name="windowScreens" value="Yes">
+            <label for="screensYes">Yes</label>
+            <input type="radio" id="screensNo" name="windowScreens" value="No">
+            <label for="screensNo">No</label>
+          </div>
+        </div>
+        <div class="filter-actions">
+          <button type="button" class="action-btn apply-btn" id="applyFilterBtn">Apply</button>
+          <button type="button" class="action-btn clear-btn" id="clearFilterBtn">Clear</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="Admin.js"></script>
+</body>
+</html>
