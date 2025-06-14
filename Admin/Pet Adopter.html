@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Adopter</title>
+    <link rel = "stylesheet" href = "Admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+    <div class="sidebar">
+        <div class="nav-logo"> 
+          <img src="Images/logo-pawscue.png" class="logo-img" alt="Logo" />
+        </div>
+
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="Admin.html" class="nav-link">
+                    <span class="nav-icon"><i class="fas fa-chart-pie"></i></span>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="Pet Adopter.html" class="nav-link active">
+                    <span class="nav-icon"><i class="fas fa-user"></i></span>
+                    <span>Pet Adopter</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <span class="nav-icon"><i class="fas fa-home"></i></span>
+                    <span>House Information</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <span class="nav-icon"><i class="fas fa-user-friends"></i></span>
+                    <span>Spouse Information</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <span class="nav-icon"><i class="fas fa-users"></i></span>
+                    <span>Household Information</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <span class="nav-icon"><i class="fas fa-paw"></i></span>
+                    <span>Adopter Pets Information</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <span class="nav-icon"><i class="fas fa-user-cog"></i></span>
+                    <span>Admin Profile</span>
+                </a>
+            </li>
+        </ul>
+        
+        <button class="logout-btn">Log out</button>
+    </div>
+
+    <div class="main-content">
+        <div class="dashboard-header">
+            <h1 class="dashboard-title">Pet Adopter Records</h1>
+        </div>
+        
+        <div class="content-section">
+            <div class="controls">
+                <label for="itemsPerPage">Show: </label>
+                <select class="itemsPerPage" id="itemsPerPage">
+                    <option value="10" selected>10</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+                <div class="control-group">
+                </div>
+                <div class="search-filter">
+                    <div class="search-container">
+                        <input type="text" class="search-box" placeholder="Search here">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="data-area">
+                <div class = "table-container"> 
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Adopter ID</th>
+                                <th>Adopter Name</th>
+                                <th>Contact Number</th>
+                                <th>Email Address</th>
+                                <th>Adopter Address ID</th>
+                                <th>Spouse ID</th>
+                                <th>Employment Status</th>
+                                <th>Employer Name</th>
+                                <th>Work Contact Number</th>
+                                <th>Work Address</th>
+                                <th>Working Hours</th>
+                                <th>Pet Alone Hours</th>
+                                <th>Pet Caretaker</th>
+                                </tr>
+                        </thead>
+                        <tbody>
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        
+            <div class="pagination">
+                <span class="pagination-text">1 - 6 of 6</span>
+                <div class="pagination-controls">
+                    <button class="pagination-btn"><i class="fas fa-chevron-left"></i></button>
+                    <button class="pagination-btn active"><i class="fas fa-chevron-up"></i></button>
+                    <button class="pagination-btn"><i class="fas fa-chevron-down"></i></button>
+                    <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src = "Pet Adopter.js"></script>
+</body>
+</html>
